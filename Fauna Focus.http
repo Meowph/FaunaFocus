@@ -1,0 +1,6 @@
+@Fauna_Focus_HostAddress = http://localhost:5155
+
+GET {{Fauna_Focus_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
