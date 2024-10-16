@@ -13,7 +13,7 @@ export const getPostById = (id) => {
 }
 
 export const addPost = (post) => {
-    return fetch(`${apiUrl}/post`, {
+    return fetch(`${apiUrl}`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
@@ -23,13 +23,13 @@ export const addPost = (post) => {
 };
 
 export const deletePost = (postId) => {
-    return fetch(`${apiUrl}/post/${postId}`, {
+    return fetch(`${apiUrl}/${postId}`, {
         method: "DELETE"
     })
 }
 
 export const submitUpdatePost = (post) => {
-    return fetch(`${apiUrl}/post/${post.id}`, {
+    return fetch(`${apiUrl}/${post.id}`, {
         method: "PUT",
         headers: {
             "Content-Type": "application/json"
@@ -39,11 +39,11 @@ export const submitUpdatePost = (post) => {
 }
 
 export const getAllApprovedPostsByCategoryId = (categoryId) => {
-    return fetch(`${apiUrl}/post/getallapprovedpostsbycategoryid/${categoryId}`).then(res => res.json())
+    return fetch(`${apiUrl}/getallapprovedpostsbycategoryid/${categoryId}`).then(res => res.json())
 }
 
 export const getAllApprovedPostsByUserId = (userId) => {
-    return fetch(`${apiUrl}/post/getallapprovedpostsbyuserid/${userId}`).then(res => res.json())
+    return fetch(`${apiUrl}/getallapprovedpostsbyuserid/${userId}`).then(res => res.json())
 }
 
 // export const getAllPostsBySubscriberId = (userId) => {

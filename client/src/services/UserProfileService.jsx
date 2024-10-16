@@ -36,21 +36,21 @@ export const register = (userObject) => {
 };
 
 export const getAllUsers = () => {
-  return fetch(`${apiUrl}/api/UserProfile`)
+  return fetch(`${apiUrl}`)
           .then((res) => res.json())
 };
 
 export const getUserById = async (id) => {
-  return fetch(`${apiUrl}/api/UserProfile/${id}`)
+  return fetch(`${apiUrl}/${id}`)
           .then((res) => res.json())
 };
 
-export const updateUser = (user) => {
-  return fetch(`${apiUrl}/api/UserProfile/${user.id}`, {
-    method: "PUT", 
-    headers: {
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify(user),
-  })
-} 
+// export const updateUser = (user) => {
+//   return fetch(`${apiUrl}/api/UserProfile/${user.id}`, {
+//     method: "PUT", 
+//     headers: {
+//       "Content-Type": "application/json"
+//     },
+//     body: JSON.stringify(user),
+//   })
+

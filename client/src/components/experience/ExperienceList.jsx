@@ -45,12 +45,12 @@ export const ExperienceList = () => {
             </select>
 
             {/* Filter by User */}
-            <select name="users" onChange={(e) => setUserSelection(parseInt(e.target.value))}>
+            {/* <select name="users" onChange={(e) => setUserSelection(parseInt(e.target.value))}>
                 <option value="">Filter By User</option>
                 {users.map(user => (
                     <option key={user.id} value={user.id}>{user.displayName}</option>
                 ))}
-            </select>
+            </select> */}
 
             {/* View All Experiences */}
             <Button onClick={getAllExperiences}>View All Experiences</Button>
@@ -58,9 +58,11 @@ export const ExperienceList = () => {
             <div className="container">
                 <div className="row justify-content-center">
                     <div className="cards-column">
-                        {experiences?.filter(experience => experience.isApproved).map((experience) => (
-                            <Experience key={experience.id} experience={experience} />
-                        ))}
+                    {experiences?.length > 0 ? experiences.map((experience) => (
+                            // Check using a ternary operator to display only approved experiences
+                            experience.isApproved ? 
+                            <Experience key={experiences.id} experience={experience} /> : null
+                        )) : ""}
                     </div>
                 </div>
             </div>

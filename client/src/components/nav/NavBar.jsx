@@ -9,7 +9,8 @@ import {
   NavItem,
   NavLink
 } from "reactstrap";
-import { logout } from "../../services/userProfileService.jsx";
+import { logout } from "../../services/UserProfileService.jsx";
+
 
 export const NavBar = ({ isLoggedIn, setIsLoggedIn, currentUser }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -33,6 +34,9 @@ export const NavBar = ({ isLoggedIn, setIsLoggedIn, currentUser }) => {
                   </NavLink>
                   <NavLink tag={RRNavLink} to="/experiences">
                     Experiences
+                  </NavLink>
+                  <NavLink tag={RRNavLink} to="/account">
+                    Account
                   </NavLink>
                 </NavItem>
                 <NavItem>

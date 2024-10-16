@@ -5,17 +5,20 @@ import { getAllUsers } from "../../services/UserProfileService.jsx";
 import { Post } from "./Post.jsx";
 import { Button } from "reactstrap";
 import { getAllCategories } from "../../services/CategoryService.jsx";
+import { Link } from 'react-router-dom';
 
 export const PostList = () => {
     const [posts, setPosts] = useState();
     const [categories, setCategories] = useState([])
     const [categorySelection, setCategorySelection] = useState([])
     const [users, setUsers] = useState([])
-    const [userSelection, setUserSelection] = useState({})
+    const [userSelection, setUserSelection] = useState([])
 
     const getAllPosts = () => {
         getAllApprovedPosts().then(postArr => setPosts(postArr));
     }
+
+    // console.log("Fetched users:", userSelection)
 
     useEffect(() => {
         getAllPosts()
@@ -26,7 +29,7 @@ export const PostList = () => {
     }, [])
 
     useEffect(() => {
-        getAllUsers().then(userArr => setUsers(userArr))
+        getAllUsers().then(userArr =>  setUsers(userArr))
     }, [])
 
     useEffect(() => {
@@ -34,7 +37,9 @@ export const PostList = () => {
     }, [categorySelection])
 
     useEffect(() => {
-        getAllApprovedPostsByUserId(userSelection).then(postArr => setPosts(postArr))
+        getAllApprovedPostsByUserId(userSelection).then(postArr => {
+            console.log("Fetched users:", postArr)
+            setPosts(postArr)})
     }, [userSelection])
     
 
@@ -47,15 +52,18 @@ export const PostList = () => {
                     return <option value={category.id}>{category.name}</option>
                 })}
             </select>
+
             {/* Filter by User */}
             <select name="users" onChange={(e) => setUserSelection(e.target.value)}>
                 <option selected>Filter By User</option>
-                {users.map(users => {
-                    return <option value={users.id}>{users.displayName}</option>
+                {users.map(user => {
+                    return <option value={user.id}>{user.displayName}</option>
                 })}
             </select>
+            
             {/* View All Posts */}
             <Button onClick={() => getAllPosts()}>View All Posts</Button>
+            <Link to={`/newpost`}>Create Post</Link>
             <div className="container">
                 <div className="row justify-content-center">
                     <div className="cards-column">

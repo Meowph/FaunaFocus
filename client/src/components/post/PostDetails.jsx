@@ -48,7 +48,7 @@ export const PostDetails = ({ isAdmin }) => {
       <Card className="m-4">
         <p className="text-left px2">{postDetails.title}</p>
         <img
-          src={`${postDetails.imagelocation}`}
+          src={`${postDetails.imgUrl}`}
           alt={`Image for ${postDetails.title}`}
         />
         <p className="text-left px2">Location: {postDetails.location}</p>
@@ -83,7 +83,7 @@ export const PostDetails = ({ isAdmin }) => {
             </Button>
             </>
             )}
-        <Link to={"/myposts"}>My Posts</Link>
+        {/* <Link to={"/myposts"}>My Posts</Link> */}
         <Link to={"/posts"}>All Posts</Link>
 
         {/* Show the "Unapprove" button if the post is approved */}

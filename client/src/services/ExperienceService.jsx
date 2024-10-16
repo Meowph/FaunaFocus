@@ -29,7 +29,7 @@ export const deleteExperience = (experienceId) => {
 }
 
 export const submitUpdateExperience = (experience) => {
-    return fetch(`${apiUrl}/experience/${experience.id}`, {
+    return fetch(`${apiUrl}/${experience.id}`, {
         method: "PUT",
         headers: {
             "Content-Type": "application/json"
@@ -39,7 +39,7 @@ export const submitUpdateExperience = (experience) => {
 }
 
 export const getAllApprovedExperiencesByCategoryId = (categoryId) => {
-    return fetch(`${apiUrl}/experience/getallapprovedexperiencesbycategoryid/${categoryId}`).then(res => res.json())
+    return fetch(`${apiUrl}/getallapprovedexperiencesbycategoryid/${categoryId}`).then(res => res.json())
 }
 
 export const getAllApprovedExperiencesByUserId = (userId) => {

@@ -16,7 +16,7 @@ namespace Fauna_Focus.Repositories
                 conn.Open();
                 using (var cmd = conn.CreateCommand())
                 {
-                    cmd.CommandText = @"SELECT p.Id, p.Title, p.PublishDateTime, p.isApproved, p.CategoryId, p.userId, p.Description, p.ImgUrl, p.Location,
+                    cmd.CommandText = @"SELECT p.Id, p.Title, p.PublishDateTime, p.isApproved, p.otherUsersDisplayName, p.CategoryId, p.userId, p.Description, p.ImgUrl, p.Location,
                                         c.Name, up.DisplayName
                                         FROM Post p
                                         LEFT JOIN Category c On c.Id = p.CategoryId
@@ -39,9 +39,10 @@ namespace Fauna_Focus.Repositories
                             isApproved = reader.GetBoolean(reader.GetOrdinal("isApproved")),
                             Description = DbUtils.GetString(reader, "Description"),
                             ImgUrl = DbUtils.GetString(reader, "ImgUrl"),
-                            Location = DbUtils.GetString(reader, "Location"),
+                            Location = DbUtils.GetNullableString(reader, "Location"),
                             CategoryId = DbUtils.GetInt(reader, "CategoryId"),
-                            userId = DbUtils.GetInt(reader, "userId"),
+                            userId = DbUtils.GetNullableInt(reader, "userId"),
+                            otherUsersDisplayName = DbUtils.GetNullableString(reader, "otherUsersDisplayName"),
                             Category = new Category()
                             {
                                 Name = DbUtils.GetString(reader, "Name")
@@ -54,6 +55,7 @@ namespace Fauna_Focus.Repositories
                         });
 
                     }
+
                     
                     Console.Write("check");
                     reader.Close();
@@ -235,7 +237,7 @@ namespace Fauna_Focus.Repositories
                 using (var cmd = conn.CreateCommand())
                 {
                     cmd.CommandText = @"
-                                        SELECT p.Id, p.Title, p.PublishDateTime, p.isApproved, p.CategoryId, p.UserProfileId, p.ImgUrl, p,Location,
+                                        SELECT p.Id, p.Title, p.PublishDateTime, p.isApproved, p.CategoryId, p.UserProfileId, p.ImgUrl, p.Location,
                                         c.Name, up.DisplayName
                                         FROM Post p
                                         LEFT JOIN Category c On c.Id = p.CategoryId
