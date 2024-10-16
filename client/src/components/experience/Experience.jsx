@@ -2,6 +2,11 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Card } from 'reactstrap';
 
+//Double-check paths (aka: experiences vs experience)... use https://localhst:blah blah/api/experiences or experience/what you are trying to call)
+//Keep trying until info shows, then plug in what works 
+
+//~~~ Keep in mind for de-bugging! ~~~
+
 export const Experience = ({ experience }) => {
   return (
     <Card className="m-4">
