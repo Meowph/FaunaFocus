@@ -1,4 +1,6 @@
 
+using Fauna_Focus.Repositories;
+
 namespace Fauna_Focus
 {
     public class Program
@@ -10,6 +12,12 @@ namespace Fauna_Focus
             // Add services to the container.
 
             builder.Services.AddControllers();
+            builder.Services.AddTransient<IUserProfileRepository, UserProfileRepository>();
+            builder.Services.AddTransient<IChatRepository, ChatRepository>();
+            builder.Services.AddTransient<IPostRepository, PostRepository>();
+            builder.Services.AddTransient<IExperienceRepository, ExperienceRepository>();
+            builder.Services.AddTransient<ICategoryRepository, CategoryRepository>();
+            builder.Services.AddTransient<ISubscriptionRepository, SubscriptionRepository>();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
@@ -21,6 +29,12 @@ namespace Fauna_Focus
             {
                 app.UseSwagger();
                 app.UseSwaggerUI();
+                app.UseCors(options =>
+                {
+                    options.AllowAnyOrigin();
+                    options.AllowAnyMethod();
+                    options.AllowAnyHeader();
+                });
             }
 
             app.UseHttpsRedirection();
