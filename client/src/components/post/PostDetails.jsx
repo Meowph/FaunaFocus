@@ -48,7 +48,7 @@ export const PostDetails = ({ isAdmin }) => {
       <Card className="m-4">
         <p className="text-left px2">{postDetails.title}</p>
         <img
-          src={`${postDetails.imgurl}`}
+          src={`${postDetails.imagelocation}`}
           alt={`Image for ${postDetails.title}`}
         />
         <p className="text-left px2">Location: {postDetails.location}</p>
@@ -57,7 +57,7 @@ export const PostDetails = ({ isAdmin }) => {
           Posted By: {postDetails.userProfile.displayName}
         </p>
         {/* <AddNewSubscription currentUser={currentUser} /> */}
-        <p className="text-left px2">Content: {postDetails.content}</p>
+        <p className="text-left px2">Description: {postDetails.description}</p>
         {(currentUser.id === postDetails.userProfileId) && (
             <Button
               color="warning"

@@ -5,11 +5,11 @@ export const getAllApprovedExperiences = () => {
 }
 
 export const getAllApprovedUserExperiences = (id) => {
-    return fetch(`${apiUrl}/experiences/getallbyuserid/${id}`).then(res => res.json())
+    return fetch(`${apiUrl}/getallbyuserid/${id}`).then(res => res.json())
 }
 
 export const getExperienceById = (id) => {
-    return fetch(`${apiUrl}/experience/${id}`).then(res => res.json())
+    return fetch(`${apiUrl}/${id}`).then(res => res.json())
 }
 
 export const addExperience = (experience) => {

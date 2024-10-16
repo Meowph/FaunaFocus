@@ -6,7 +6,7 @@ export const Experience = ({ experience }) => {
   return (
     <Card className="m-4">
       {experience?.id && (
-        <Link to={`/experience/${experience.id}`}>
+        <Link to={`/experiences/${experience.id}`}>
           <p className="text-left px-2">{experience.title}</p>
         </Link>
       )}

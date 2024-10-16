@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { useState } from "react"
 import { getAllApprovedPosts, getAllApprovedPostsByCategoryId, getAllApprovedPostsByUserId } from "../../services/PostService.jsx";
+import { getAllUsers } from "../../services/UserProfileService.jsx";
 import { Post } from "./Post.jsx";
 import { Button } from "reactstrap";
 import { getAllCategories } from "../../services/CategoryService.jsx";
@@ -24,9 +25,9 @@ export const PostList = () => {
         getAllCategories().then(categoryArr => setCategories(categoryArr))
     }, [])
 
-    // useEffect(() => {
-    //     getAllUsers().then(userArr => setUsers(userArr))
-    // }, [])
+    useEffect(() => {
+        getAllUsers().then(userArr => setUsers(userArr))
+    }, [])
 
     useEffect(() => {
         getAllApprovedPostsByCategoryId(categorySelection).then(postArr => setPosts(postArr))
