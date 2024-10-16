@@ -3,7 +3,6 @@ import { getPostById } from "../../services/PostService.jsx";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { Button, Card } from "reactstrap";
 // import AddNewSubscription from "../Subscriptions/AddSubscription.js";
-// import { deniedPosts } from "../Managers/PostManager.jsx";
 
 export const PostDetails = ({ isAdmin }) => {
   const [postDetails, setPostDetails] = useState({});
@@ -25,7 +24,6 @@ export const PostDetails = ({ isAdmin }) => {
 
   useEffect(() => {
     getPostById(id).then((postObj) => 
-        // console.log("Fetched Post Details:", postObj); //REMOVE LATER
         setPostDetails(postObj)); 
 }, [id]);
 
@@ -44,28 +42,6 @@ export const PostDetails = ({ isAdmin }) => {
     return <div>No details yet</div>;
   }
 
-  // const handleUnApproval = (post) => {
-  //   const deniedPost = {
-  //     id: post.id, 
-  //     title: post.title,  
-  //     content: post.content,
-  //     imageLocation: post.imageLocation,
-  //     createDateTime: post.createDateTime,
-  //     publishDateTime: post.publishDateTime,
-  //     categoryId: post.categoryId,
-  //     userProfileId: post.userProfileId, 
-  //     isApproved: 0
-  // }
-  //   deniedPosts(deniedPost).then(() => {
-  //     // Update the state of post details to reflect the unapproval 
-  //     setPostDetails(prev => ({ ...prev, isApproved: false }))
-  //     navigate('/posts')
-  //   });
-  // };
-
-//   //REMOVE LATER
-//   console.log("isAdmin: ", isAdmin);
-// console.log("postDetails.isApproved: ", postDetails.isApproved);
 
   return (
     <>

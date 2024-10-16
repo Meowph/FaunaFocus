@@ -27,14 +27,12 @@ export const NavBar = ({ isLoggedIn, setIsLoggedIn, currentUser }) => {
           <Nav navbar>
             {isLoggedIn && (
               <>
-              <NavItem>
-                <NavLink tag={RRNavLink} to="/">
-                  Home
-                </NavLink>
-              </NavItem>
                 <NavItem>
                   <NavLink tag={RRNavLink} to="/post">
                     Posts
+                  </NavLink>
+                  <NavLink tag={RRNavLink} to="/experiences">
+                    Experiences
                   </NavLink>
                 </NavItem>
                 <NavItem>

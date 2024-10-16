@@ -277,11 +277,6 @@ namespace Fauna_Focus.Repositories
                                         LEFT JOIN UserProfile up ON up.Id = e.UserProfileId
                                         WHERE e.isApproved = 1 AND e.PublishDateTime <= CURRENT_TIMESTAMP AND up.Id = @Id
                                         ORDER BY e.PublishDateTime DESC";
-                    //FROM Experience e
-                    //   LEFT JOIN Category c On c.Id = e.CategoryId
-                    //   LEFT JOIN UserProfile up ON up.Id = e.UserProfileId
-                    //   WHERE e.UserProfileId = @id AND e.isApproved = 1 AND e.PublishDateTime <= CURRENT_TIMESTAMP
-                    //   ORDER BY e.PublishDateTime DESC
 
                     DbUtils.AddParameter(cmd, "@Id", id);
 

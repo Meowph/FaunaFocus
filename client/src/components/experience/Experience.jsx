@@ -4,13 +4,18 @@ import { Card } from 'reactstrap';
 
 export const Experience = ({ experience }) => {
   return (
-
     <Card className="m-4">
-      <Link to={`/experience/${experience.id}`}> 
-        <p className="text-left px-2" >{experience.Title}</p>
-      </Link> 
-       <p className="text-left px-2">Posted By: {experience.userProfile.displayName}</p>
-      <p className="text-left px-2">Category: {experience.category.name}</p>
+      {experience?.id && (
+        <Link to={`/experience/${experience.id}`}>
+          <p className="text-left px-2">{experience.title}</p>
+        </Link>
+      )}
+      {experience?.userProfile?.displayName && (
+        <p className="text-left px-2">Posted By: {experience.userProfile.displayName}</p>
+      )}
+      {experience?.category?.name && (
+        <p className="text-left px-2">Category: {experience.category.name}</p>
+      )}
     </Card>
   );
 };

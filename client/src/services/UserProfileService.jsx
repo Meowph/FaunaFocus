@@ -1,4 +1,4 @@
-const apiUrl = "https://localhost:5001/api/UserProfile";
+const apiUrl = "https://localhost:5001/api/userProfile";
 
 export const login = (userObject) => {
   return fetch(`${apiUrl}/GetByEmail?email=${userObject.email}`)

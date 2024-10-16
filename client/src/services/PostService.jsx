@@ -1,7 +1,7 @@
-const apiUrl = 'https://localhost:5001/api/Post';
+const apiUrl = 'https://localhost:5001/api/posts';
 
 export const getAllApprovedPosts = () => {
-    return fetch(`${apiUrl}/Post`).then(res => res.json());
+    return fetch(`${apiUrl}`).then(res => res.json());
 }
 
 export const getAllApprovedUserPosts = (id) => {

@@ -24,9 +24,9 @@ export const PostList = () => {
         getAllCategories().then(categoryArr => setCategories(categoryArr))
     }, [])
 
-    useEffect(() => {
-        getAllUsers().then(userArr => setUsers(userArr))
-    }, [])
+    // useEffect(() => {
+    //     getAllUsers().then(userArr => setUsers(userArr))
+    // }, [])
 
     useEffect(() => {
         getAllApprovedPostsByCategoryId(categorySelection).then(postArr => setPosts(postArr))
