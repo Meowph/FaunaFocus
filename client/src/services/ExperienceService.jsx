@@ -23,7 +23,7 @@ export const addExperience = (experience) => {
 };
 
 export const deleteExperience = (experienceId) => {
-    return fetch(`${apiUrl}/experience/${experienceId}`, {
+    return fetch(`${apiUrl}/${experienceId}`, {
         method: "DELETE"
     })
 }
@@ -43,5 +43,5 @@ export const getAllApprovedExperiencesByCategoryId = (categoryId) => {
 }
 
 export const getAllApprovedExperiencesByUserId = (userId) => {
-    return fetch(`${apiUrl}/experience/getallapprovedexperiencesbyuserid/${userId}`).then(res => res.json())
+    return fetch(`${apiUrl}/getallapprovedexperiencesbyuserid/${userId}`).then(res => res.json())
 }
