@@ -4,6 +4,7 @@ import { getAllUsers } from "../../services/UserProfileService.jsx";
 import { getAllCategories } from "../../services/CategoryService.jsx";
 import { Experience } from "./Experience.jsx";
 import { Button } from "reactstrap";
+import { Link } from "react-router-dom";
 
 export const ExperienceList = () => {
     const [experiences, setExperiences] = useState([]);
@@ -37,7 +38,7 @@ export const ExperienceList = () => {
     return (
         <>
             {/* Filter by Category */}
-            <select name="categories" onChange={(e) => setCategorySelection(parseInt(e.target.value))}>
+            <select style={{marginRight:"5px"}} name="categories" onChange={(e) => setCategorySelection(parseInt(e.target.value))}>
                 <option value="">Filter By Category</option>
                 {categories.map(category => (
                     <option key={category.id} value={category.id}>{category.name}</option>
@@ -45,15 +46,18 @@ export const ExperienceList = () => {
             </select>
 
             {/* Filter by User */}
-            {/* <select name="users" onChange={(e) => setUserSelection(parseInt(e.target.value))}>
+            <select style={{marginRight:"5px"}} name="users" onChange={(e) => setUserSelection(parseInt(e.target.value))}>
                 <option value="">Filter By User</option>
                 {users.map(user => (
                     <option key={user.id} value={user.id}>{user.displayName}</option>
                 ))}
-            </select> */}
+            </select>
 
             {/* View All Experiences */}
-            <Button onClick={getAllExperiences}>View All Experiences</Button>
+            <Button style={{marginRight:"5px"}} onClick={getAllExperiences}>View All Experiences</Button>
+            <Link to="/newexperience">
+                <Button className="create-experience-button">Create Experience</Button>
+            </Link>
 
             <div className="container">
                 <div className="row justify-content-center">

@@ -3,8 +3,8 @@
     public class Experiences
     {
         public int Id { get; set; }
-        public int UserId { get; set; }
-        public string otherUsersDisplayName {  get; set; }
+        public int? UserId { get; set; }
+        public string? otherUsersDisplayName {  get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
         public DateTime PublishDateTime { get; set; }

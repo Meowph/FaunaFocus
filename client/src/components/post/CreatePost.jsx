@@ -15,7 +15,7 @@ export const CreatePost = () => {
         
         let postCopy = {...post}
         postCopy.UserProfileId = parsedUser.id
-        postCopy.IsApproved = false
+        postCopy.IsApproved = true
 
         addPost(postCopy).then(postId => navigate(`/post/${postId}`))
     }
@@ -26,6 +26,9 @@ export const CreatePost = () => {
 
     if (!postCategories.length > 0) {
         return <div>No Data Yet!</div>
+    }
+    const isValidImageUrl = (url) => {
+      return /\.(jpeg|jpg|gif|png|svg)$/.test(url); // Basic regex for image file extensions
     }
 
 return (
@@ -47,12 +50,19 @@ return (
                 }}></input><br/>
             <label for="addPostImgUrl">Image Url</label>
             <input id="addPostImgUrl" 
-                  type="file"
-                      onChange={(e) => {
-                      let postObj = {...post}
-                      postObj.ImgUrl = URL.createObjectURL(e.target.files[0])
-                      setPost(postObj)
-                      }}></input><br/>
+                  type="text"
+                   placeholder="Enter Image URL"
+                   onChange={(e) => {
+                    const url = e.target.value;
+                    if (isValidImageUrl(url)) {
+                      let postObj = { ...post };
+                      postObj.ImgUrl = url; // Save the URL directly
+                      setPost(postObj);
+                    } else {
+                      console.error("Invalid image URL");
+                      // Optionally show an error message to the user
+                    }
+                  }}></input><br/>
             <select name="categories" 
                     id="createPostCategories" 
                     onChange= {(e) => {

@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { getAllPostsBySubscriberId } from "../../services/PostService.jsx";
-import { Post } from "./Post.jsx";
-
+import { Post } from "../post/Post.jsx";
 
 export const SubscribedPostList = ({ currentUser }) => {
   const [posts, setPosts] = useState([]);

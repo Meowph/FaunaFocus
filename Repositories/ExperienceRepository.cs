@@ -15,7 +15,7 @@ namespace Fauna_Focus.Repositories
                 conn.Open();
                 using (var cmd = conn.CreateCommand())
                 {
-                    cmd.CommandText = @" SELECT e.Id, e.Title, e.IsApproved, e.CategoryId, e.UserId, e.Description, 
+                    cmd.CommandText = @" SELECT e.Id, e.Title, e.IsApproved, e.otherUsersDisplayName, e.CategoryId, e.UserId, e.Description, 
                        e.PublishDateTime, c.Name, up.DisplayName, e.UserProfileId
                 FROM Experience e
                 LEFT JOIN Category c ON c.Id = e.CategoryId
@@ -37,8 +37,9 @@ namespace Fauna_Focus.Repositories
                             isApproved = reader.GetBoolean(reader.GetOrdinal("isApproved")),
                             Description = DbUtils.GetString(reader, "Description"),
                             CategoryId = DbUtils.GetInt(reader, "CategoryId"),
-                            UserId = DbUtils.GetInt(reader, "UserId"),
+                            UserId = (int)DbUtils.GetNullableInt(reader, "UserId"),
                             UserProfileId = DbUtils.GetInt(reader, "UserProfileId"),
+                            otherUsersDisplayName = DbUtils.GetNullableString(reader, "otherUsersDisplayName"),
                             Category = new Category()
                             {
                                 Name = DbUtils.GetString(reader, "Name")

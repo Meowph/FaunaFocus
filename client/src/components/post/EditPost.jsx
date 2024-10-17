@@ -32,6 +32,7 @@ export const EditPost = () => {
         postCopy.description = description
         postCopy.imgUrl = imgUrl
         postCopy.categoryId = state.post.categoryId
+        postCopy.IsApproved = true
 
         setPost(postCopy)
     }, [title, description, imgUrl])
@@ -39,6 +40,10 @@ export const EditPost = () => {
     useEffect(() => {
         getAllCategories().then(categoryArr => setPostCategories(categoryArr))
     }, [])
+
+    const isValidImageUrl = (url) => {
+        return /\.(jpeg|jpg|gif|png|svg)$/.test(url); // Basic regex for image file extensions
+      }
 
   return (
       <>
@@ -60,13 +65,19 @@ export const EditPost = () => {
                   <label for="addPostImgUrl">Image Url</label>
                   <input 
                     id="addPostImgUrl"
-                    type="file"  
-                    accept="image/*"  
+                    type="text"
+                    placeholder="Enter Image URL"
                     onChange={(e) => {
-                       if (e.target.files && e.target.files[0]) {  
-                         setImgUrl(URL.createObjectURL(e.target.files[0])); 
-                        }
-                     }}
+                     const url = e.target.value;
+                     if (isValidImageUrl(url)) {
+                       let postObj = { ...post };
+                       postObj.ImgUrl = url; // Save the URL directly
+                       setPost(postObj);
+                     } else {
+                       console.error("Invalid image URL");
+                       // Optionally show an error message to the user
+                     }
+                   }}
                  /><br/>
 
                   <select name="categories" id="createPostCategories" onChange={(e) => {

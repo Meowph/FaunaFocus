@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useState } from "react"
-import { getAllApprovedUserExperiences } from "../Managers/ExperienceManager.jsx";
-import { Experience } from ".experience/Experience.jsx";
+import { getAllApprovedUserExperiences } from "../../services/ExperienceService.jsx";
+import { Experience } from "./Experience.jsx";
 
 export const UserExperienceList = () => {
     const [userExperiences, setUserExperiences] = useState([])

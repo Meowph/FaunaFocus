@@ -15,7 +15,7 @@ export const CreateExperience = () => {
         
         let experienceCopy = {...experience}
         experienceCopy.UserProfileId = parsedUser.id
-        experienceCopy.IsApproved = false
+        experienceCopy.IsApproved = true
 
         addExperience(experienceCopy).then(experienceId => navigate(`/experience/${experienceId}`))
     }
@@ -43,14 +43,6 @@ export const CreateExperience = () => {
                         <input id="addExperienceDescription" onChange={(e) => {
                                                                     let experienceObj = {...experience}
                                                                     experienceObj.description = e.target.value
-                                                                    setExperience(experienceObj)
-                        }}></input><br/>
-                        <label for="addExperienceImgUrl">Image Url</label>
-                        <input id="addExperienceImgUrl" 
-                            type="file"
-                                                                    onChange={(e) => {
-                                                                    let experienceObj = {...experience}
-                                                                    experienceObj.ImgUrl = URL.createObjectURL(e.target.files[0])
                                                                     setExperience(experienceObj)
                         }}></input><br/>
                         <select name="categories" id="createExperienceCategories" onChange={(e) => {

@@ -13,7 +13,7 @@ export const getExperienceById = (id) => {
 }
 
 export const addExperience = (experience) => {
-    return fetch(`${apiUrl}/experience`, {
+    return fetch(`${apiUrl}`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json",

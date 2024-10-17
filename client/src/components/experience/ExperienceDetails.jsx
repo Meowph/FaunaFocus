@@ -46,17 +46,12 @@ export const ExperienceDetails = ({ isAdmin }) => {
     <>
       <Card className="m-4">
         <p className="text-left px2">{experienceDetails.title}</p>
-        <img
-          src={`${experienceDetails.imgurl}`}
-          alt={`Image for ${experienceDetails.title}`}
-        />
-        <p className="text-left px2">Location: {experienceDetails.location}</p>
         <p className="text-left px2">Published On: {experienceDate}</p>
         <p className="text-left px2">
-          Experienceed By: {experienceDetails.userProfile.displayName}
+          Experienced By: {experienceDetails.userProfile.displayName}
         </p>
         {/* <AddNewSubscription currentUser={currentUser} /> */}
-        <p className="text-left px2">Content: {experienceDetails.content}</p>
+        <p className="text-left px2">Description: {experienceDetails.description}</p>
         {(currentUser.id === experienceDetails.userProfileId) && (
             <Button
               color="warning"
@@ -83,7 +78,7 @@ export const ExperienceDetails = ({ isAdmin }) => {
             </>
             )}
         <Link to={"/myexperiences"}>My Experiences</Link>
-        <Link to={"/experiences"}>All Experiences</Link>
+        {/* <Link to={"/experiences"}>All Experiences</Link> */}
 
         {/* Show the "Unapprove" button if the experience is approved */}
          {/* {isAdmin && experienceDetails.isApproved ? 

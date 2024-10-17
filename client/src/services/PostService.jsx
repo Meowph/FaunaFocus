@@ -5,7 +5,7 @@ export const getAllApprovedPosts = () => {
 }
 
 export const getAllApprovedUserPosts = (id) => {
-    return fetch(`${apiUrl}/post/getallbyuserid/${id}`).then(res => res.json())
+    return fetch(`${apiUrl}/getallbyuserid/${id}`).then(res => res.json())
 }
 
 export const getPostById = (id) => {
@@ -46,6 +46,6 @@ export const getAllApprovedPostsByUserId = (userId) => {
     return fetch(`${apiUrl}/getallapprovedpostsbyuserid/${userId}`).then(res => res.json())
 }
 
-// export const getAllPostsBySubscriberId = (userId) => {
-//     return fetch(`${apiUrl}/Post/GetPostsBySubscriberId/${userId}`).then(res => res.json())
-// }
+export const getAllPostsBySubscriberId = (userId) => {
+    return fetch(`${apiUrl}/Post/GetPostsBySubscriberId/${userId}`).then(res => res.json())
+}

@@ -2,6 +2,11 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Card } from 'reactstrap';
 
+//Double-check paths (aka: post vs posts)... use https://localhst:blah blah/api/post vs posts/what you are trying to call)
+//Keep trying until info shows, then plug in what works 
+
+//~~~ Keep in mind for de-bugging! ~~~
+
 export const Post = ({ post }) => {
   return (
 

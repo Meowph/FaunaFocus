@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useState } from "react"
-import { getAllApprovedUserPosts } from "../Managers/PostManager.jsx";
-import { Post } from ".post/Post.jsx";
+import { getAllApprovedUserPosts } from "../../services/PostService.jsx";
+import { Post } from "./Post.jsx";
 
 export const UserPostList = () => {
     const [userPosts, setUserPosts] = useState([])

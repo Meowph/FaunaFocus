@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 import { getPostById } from "../../services/PostService.jsx";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { Link, Route, Routes, useNavigate, useParams } from "react-router-dom";
 import { Button, Card } from "reactstrap";
-// import AddNewSubscription from "../Subscriptions/AddSubscription.js";
+// import AddNewSubscription from "../subs/UserSubscription.jsx";
 
-export const PostDetails = ({ isAdmin }) => {
+export const PostDetails = () => {
   const [postDetails, setPostDetails] = useState({});
   const [postDate, setPostDate] = useState("");
   const [currentUser, setCurrentUser] = useState({});
@@ -56,7 +56,20 @@ export const PostDetails = ({ isAdmin }) => {
         <p className="text-left px2">
           Posted By: {postDetails.userProfile.displayName}
         </p>
-        {/* <AddNewSubscription currentUser={currentUser} /> */}
+
+        {/* <Button
+              color="danger"
+              onClick={() =>
+                navigate(`/subscription/:id`)}
+            >
+              Subscribe?
+            </Button> */}
+
+        {/* <Button>
+        <Link to={`/subscription/:id`}>
+          <p className="text-left px-2">Subscribe?</p>
+        </Link>
+        </Button> */}
         <p className="text-left px2">Description: {postDetails.description}</p>
         {(currentUser.id === postDetails.userProfileId) && (
             <Button
@@ -83,8 +96,8 @@ export const PostDetails = ({ isAdmin }) => {
             </Button>
             </>
             )}
-        {/* <Link to={"/myposts"}>My Posts</Link> */}
-        <Link to={"/posts"}>All Posts</Link>
+        <Link to={"/myposts"}>My Posts</Link>
+        {/* <Link to={"/posts"}>All Posts</Link> */}
 
         {/* Show the "Unapprove" button if the post is approved */}
          {/* {isAdmin && postDetails.isApproved ? 

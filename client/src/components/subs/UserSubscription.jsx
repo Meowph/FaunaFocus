@@ -6,7 +6,7 @@ import {
   updateSubscription,
 } from "../../services/SubscriptionServices.jsx";
 import { useNavigate, useParams } from "react-router-dom";
-import { getPostById } from "../../services/UserProfileService.jsx";
+import { getPostById } from "../../services/PostService.jsx";
 
 function AddNewSubscription({ args, currentUser }) {
   const [modal, setModal] = useState(false);
@@ -25,6 +25,7 @@ function AddNewSubscription({ args, currentUser }) {
     getAllSubscriptionsByUserId(currentUser.id).then((subscriptionArr) =>
       setSubscriptions(subscriptionArr)
     );
+    console.log(currentUser)
   }, [currentUser.id]);
 
   const isSubscribed = subscriptions.some(

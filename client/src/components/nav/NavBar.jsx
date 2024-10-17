@@ -35,9 +35,9 @@ export const NavBar = ({ isLoggedIn, setIsLoggedIn, currentUser }) => {
                   <NavLink tag={RRNavLink} to="/experiences">
                     Experiences
                   </NavLink>
-                  <NavLink tag={RRNavLink} to="/account">
+                  {/* <NavLink tag={RRNavLink} to="/subscription">
                     Account
-                  </NavLink>
+                  </NavLink> */}
                 </NavItem>
                 <NavItem>
                   <a
