@@ -37,7 +37,7 @@ namespace Fauna_Focus.Repositories
                             isApproved = reader.GetBoolean(reader.GetOrdinal("isApproved")),
                             Description = DbUtils.GetString(reader, "Description"),
                             CategoryId = DbUtils.GetInt(reader, "CategoryId"),
-                            UserId = (int)DbUtils.GetNullableInt(reader, "UserId"),
+                            UserId = DbUtils.GetNullableInt(reader, "UserId"),
                             UserProfileId = DbUtils.GetInt(reader, "UserProfileId"),
                             otherUsersDisplayName = DbUtils.GetNullableString(reader, "otherUsersDisplayName"),
                             Category = new Category()
@@ -150,16 +150,27 @@ namespace Fauna_Focus.Repositories
 
         public void Add(Experiences experiences)
         {
+            // Log the value of PublishDateTime before entering the connection block
+            Console.WriteLine($"PublishDateTime being used in Add: {experiences.PublishDateTime}");
+            // Validate PublishDateTime value before any database interaction
+            if (experiences.PublishDateTime < new DateTime(1753, 1, 1) || experiences.PublishDateTime > new DateTime(9999, 12, 31))
+            {
+                Console.WriteLine($"Bad data: Invalid PublishDateTime value detected. Skipping add operation. PublishDateTime: {experiences.PublishDateTime}");
+                return; // Early return to avoid proceeding with bad data
+            }
+
             using (var conn = Connection)
             {
                 conn.Open();
                 using (var cmd = conn.CreateCommand())
                 {
+
                     cmd.CommandText = @"INSERT INTO Experience (Title, Description, 
                                                                  PublishDateTime, isApproved, CategoryId, UserProfileId)
                                         OUTPUT INSERTED.ID
                                         VALUES (@Title, @Description,
                                                  @PublishDateTime, @isApproved, @CategoryId, @UserProfileId)";
+
                     DbUtils.AddParameter(cmd, "@Title", experiences.Title);
                     DbUtils.AddParameter(cmd, "@Description", experiences.Description);
                     DbUtils.AddParameter(cmd, "@PublishDateTime", experiences.PublishDateTime);
@@ -193,7 +204,15 @@ namespace Fauna_Focus.Repositories
                 conn.Open();
                 using (var cmd = conn.CreateCommand())
                 {
-                    cmd.CommandText = @"
+                    // Log the value of PublishDateTime before anything else
+                    Console.WriteLine($"PublishDateTime being used in Update: {experiences.PublishDateTime}");
+                    // Check if PublishDateTime is valid and log if it is invalid
+                    if (experiences.PublishDateTime < new DateTime(1753, 1, 1) || experiences.PublishDateTime > new DateTime(9999, 12, 31))
+                    {
+                        Console.WriteLine($"Invalid PublishDateTime value: {experiences.PublishDateTime}");
+                        throw new ArgumentOutOfRangeException("PublishDateTime", "PublishDateTime is outside the valid SQL Server range.");
+                    }
+                        cmd.CommandText = @"
                         UPDATE Experience
                            SET Title = @Title,
                                Description = @Description,
@@ -201,6 +220,9 @@ namespace Fauna_Focus.Repositories
                                isApproved = @isApproved,
                                PublishDateTime = @PublishDateTime
                          WHERE Id = @Id";
+
+                    // Log the value of PublishDateTime
+                    Console.WriteLine($"PublishDateTime being used in Update: {experiences.PublishDateTime}");
 
                     DbUtils.AddParameter(cmd, "@Title", experiences.Title);
                     DbUtils.AddParameter(cmd, "@Description", experiences.Description);

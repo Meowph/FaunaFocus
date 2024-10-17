@@ -31,6 +31,7 @@ export const EditExperience = () => {
         experienceCopy.title = title
         experienceCopy.description = description
         experienceCopy.categoryId = state.experience.categoryId
+        experienceCopy.IsApproved = true
 
         setExperience(experienceCopy)
     }, [title, description, imgUrl])

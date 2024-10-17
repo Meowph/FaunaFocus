@@ -5,7 +5,9 @@ import { getAllCategories } from "../../services/CategoryService.jsx"
 
 export const CreateExperience = () => {
     const [experienceCategories, setExperienceCategories] = useState([])
-    const [experience, setExperience] = useState({})
+    const [experience, setExperience] = useState({
+    PublishDateTime: new Date((new Date().setHours(new Date().getHours() - 4))).toISOString() // Initialize with the current date minus 4 hours in ISO format
+});
 
     const navigate = useNavigate()
     
@@ -17,7 +19,11 @@ export const CreateExperience = () => {
         experienceCopy.UserProfileId = parsedUser.id
         experienceCopy.IsApproved = true
 
-        addExperience(experienceCopy).then(experienceId => navigate(`/experience/${experienceId}`))
+        if (!experienceCopy.PublishDateTime || new Date(experienceCopy.PublishDateTime) < new Date(1753, 0, 1)) {
+            experienceCopy.PublishDateTime = new Date(new Date().setHours(new Date().getHours() - 4)).toISOString(); // Default to current date minus 4 hours if invalid in ISO format
+        }
+
+        addExperience(experienceCopy).then(experienceId => navigate(`/experiences/${experienceId}`))
     }
 
     useEffect(() => {
