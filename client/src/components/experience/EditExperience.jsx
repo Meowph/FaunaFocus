@@ -8,7 +8,8 @@ export const EditExperience = () => {
     const [title, setTitle] = useState("")
     const [description, setDescription] = useState("")
     const [imgUrl, setImgUrl] = useState("")
-    const [experience, setExperience] = useState({})
+    const [experience, setExperience] = useState({ PublishDateTime: new Date((new Date().setHours(new Date().getHours() - 4))).toISOString() // Initialize with the current date minus 4 hours in ISO format 
+        })
 
     const { state } = useLocation()
     const navigate = useNavigate()
@@ -16,7 +17,7 @@ export const EditExperience = () => {
     const updateExperience = async (e) => {
         e.preventDefault()
         await submitUpdateExperience(experience)
-        navigate(`/experience/${experience.id}`)
+        navigate(`/experiences/${experience.id}`)
     }
 
     useEffect(() => {
@@ -32,6 +33,10 @@ export const EditExperience = () => {
         experienceCopy.description = description
         experienceCopy.categoryId = state.experience.categoryId
         experienceCopy.IsApproved = true
+
+        if (!experienceCopy.PublishDateTime || new Date(experienceCopy.PublishDateTime) < new Date(1753, 0, 1)) {
+            experienceCopy.PublishDateTime = new Date(new Date().setHours(new Date().getHours() - 4)).toISOString(); // Default to current date minus 4 hours if invalid in ISO format
+        }
 
         setExperience(experienceCopy)
     }, [title, description, imgUrl])
