@@ -1,0 +1,52 @@
+.navbar {
+  background-color: #6cd871; /* Earthy green */
+  padding: 0;
+  width: 100%;
+  position: fixed; /* Fix the navbar at the top */
+  top: 0;
+  left: 0;
+  z-index: 1000; /* Make sure it's above other content */
+}
+
+body {
+  padding-top: 60px; /* Adjust page content so it doesn't overlap with the navbar */
+}
+
+.navbar-collapse {
+  display: flex;
+  justify-content: center; /* Center the links horizontally */
+}
+
+.navbar-nav {
+  display: flex;
+  align-items: center; /* Vertically centers the items */
+  gap: 0; /* Adds space between the links */
+}
+
+.navbar-brand {
+  font-size: 2rem;
+  color: #FFFFFF;
+}
+
+.navbar-nav .nav-link {
+  color: #FFFFFF;
+  padding: 6px;
+  margin-bottom: 3px;
+  font-size: 1.1rem;
+  display: block; /* Makes the link fill the entire nav item */
+  width: 100%; /* Ensures the link takes the full width of the nav item */
+  border: 1px solid transparent; /* Add border for equal height effect */
+  transition: background-color 0.3s; /* Smooth hover transition */
+}
+
+.navbar-nav .nav-link:hover {
+  background-color: #1b441d; /* Brighter green on hover */
+  color: #FFFFFF;
+  border-radius: 5px;
+}
+
+.navbar-toggler {
+  border: none;
+  color: #FFFFFF;
+}
+

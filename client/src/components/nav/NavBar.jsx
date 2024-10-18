@@ -10,16 +10,29 @@ import {
   NavLink
 } from "reactstrap";
 import { logout } from "../../services/UserProfileService.jsx";
+import "./Navbar.css"
+import logo from "../logo/logo.jpg"
 
 
 export const NavBar = ({ isLoggedIn, setIsLoggedIn, currentUser }) => {
   const [isOpen, setIsOpen] = useState(false);
   const toggle = () => setIsOpen(!isOpen);
 
+  const handleLinkClick = () => {
+    setTimeout(() => {
+      setIsOpen(false);
+    }, 150); // Adjust the delay here (300ms = 0.3 seconds)
+  };
+
   return (
     <div>
-      <Navbar color="light" light expand="md">
-        <NavbarBrand tag={RRNavLink} to="/">
+      <Navbar>
+        <NavbarBrand tag={RRNavLink} to="/home">
+        <img
+            src={logo} // Replace with your image URL or path
+            alt="Logo"
+            style={{ width: '35px', height: '35px', marginRight: '10px', borderRadius: '30px'}} // Adjust size and margin as needed
+          />
           Fauna Focus
         </NavbarBrand>
         <NavbarToggler onClick={toggle} />
@@ -29,15 +42,15 @@ export const NavBar = ({ isLoggedIn, setIsLoggedIn, currentUser }) => {
             {isLoggedIn && (
               <>
                 <NavItem>
-                  <NavLink tag={RRNavLink} to="/post">
+                  <NavLink style={{paddingLeft:"25px"}} tag={RRNavLink} to="/post" onClick={handleLinkClick}>
                     Posts
                   </NavLink>
-                  <NavLink tag={RRNavLink} to="/experiences">
+                  <NavLink tag={RRNavLink} to="/experiences" onClick={handleLinkClick}>
                     Experiences
                   </NavLink>
-                  {/* <NavLink tag={RRNavLink} to="/subscription">
-                    Account
-                  </NavLink> */}
+                  <NavLink style={{paddingLeft:"10px"}} tag={RRNavLink} to="/map" onClick={handleLinkClick}>
+                    World Map
+                  </NavLink>
                 </NavItem>
                 <NavItem>
                   <a

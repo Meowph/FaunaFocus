@@ -10,8 +10,8 @@ export const Register = ({ setIsLoggedIn }) => {
   const [lastName, setLastName] = useState();
   const [displayName, setDisplayName] = useState();
   const [email, setEmail] = useState();
-//   const [imageLocation, setImageLocation] = useState();
-  const [password, setPassword] = useState();
+  const [imgUrl, setImgUrl] = useState();
+  // const [password, setPassword] = useState();
 //   const [confirmPassword, setConfirmPassword] = useState();
 
   const registerClick = (e) => {
@@ -68,6 +68,17 @@ export const Register = ({ setIsLoggedIn }) => {
               onChange={(e) => setEmail(e.target.value)}
             />
           </FormGroup>
+          <FormGroup>
+          <Label htmlFor="imgUrl">Profile Image</Label>
+          <Input
+            id="imgUrl"
+            type="file"
+            onChange={(e) => {
+              console.log(e.target.files[0]);
+              setImgUrl(URL.createObjectURL(e.target.files[0]))
+            }}
+          />
+        </FormGroup>
           {/* <FormGroup>
             <Label for="password">Password</Label>
             <Input

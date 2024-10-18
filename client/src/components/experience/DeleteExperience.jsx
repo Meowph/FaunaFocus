@@ -13,7 +13,7 @@ export const DeleteExperience = () => {
 
     return (
         <>
-        <Card className="m-4">
+        <Card className="container">
             <p className="text-left px2">Are you sure you want to delete {state.experience.title}?</p>
             <Button color="danger" onClick={() => confirmDeleteExperience(state.experience.id)}>Confirm Delete</Button>
             <Link to={`/experience/${state.experience.id}`}>No! Return To Experience Details</Link>

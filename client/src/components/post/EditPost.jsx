@@ -61,7 +61,12 @@ export const EditPost = () => {
                        onChange={(e) => {
                         setDescription(e.target.value)
                   }}value={description}></input><br/>
-                  
+                  <label for="addPostLocation">Location</label>
+            <input id="addPostLocation" onChange={(e) => {
+                  let postObj = {...post}
+                  postObj.Location = e.target.value
+                  setPost(postObj)
+                }}></input><br/>
                   <label for="addPostImgUrl">Image Url</label>
                   <input 
                     id="addPostImgUrl"

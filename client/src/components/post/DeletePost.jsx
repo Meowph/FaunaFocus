@@ -13,7 +13,7 @@ export const DeletePost = () => {
 
     return (
         <>
-        <Card className="m-4">
+        <Card className="container">
             <p className="text-left px2">Are you sure you want to delete {state.post.title}?</p>
             <Button color="danger" onClick={() => confirmDeletePost(state.post.id)}>Confirm Delete</Button>
             <Link to={`/post/${state.post.id}`}>No! Return To Post Details</Link>

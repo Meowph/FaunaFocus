@@ -12,6 +12,8 @@ import { SubscribedPostList } from "../components/subs/SubscribedPostList.jsx"
 import { CreateExperience } from "../components/experience/CreateExperience.jsx"
 import { UserPostList } from "../components/post/UserPostList.jsx"
 import { UserExperienceList } from "../components/experience/UserExperienceList.jsx"
+import { WorldMap } from "../components/map/WorldMap.jsx"
+import { Home } from "../components/home/Home.jsx"
 
 export const ApplicationViews = () => {
     return(
@@ -29,6 +31,8 @@ export const ApplicationViews = () => {
             <Route path="/experiences/delete/:id" element={<DeleteExperience />} />
             <Route path="/myexperiences" element={<UserExperienceList />} />
             <Route path="/subscription" element={<SubscribedPostList />} />
+            <Route path="/map" element={<WorldMap />} />
+            <Route path="/home" element={<Home />} />
         </Routes>
     )
 }

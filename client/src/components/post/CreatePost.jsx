@@ -2,6 +2,7 @@ import { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
 import { addPost } from "../../services/PostService.jsx"
 import { getAllCategories } from "../../services/CategoryService.jsx"
+import { Card } from "reactstrap"
 
 export const CreatePost = () => {
     const [postCategories, setPostCategories] = useState([])
@@ -32,7 +33,7 @@ export const CreatePost = () => {
     }
 
 return (
-  <>
+  <Card>
     <div className="container">
       <div className="row justify-content-center">
         <div className="cards-column">
@@ -46,6 +47,12 @@ return (
             <input id="addPostDescription" onChange={(e) => {
                   let postObj = {...post}
                   postObj.Description = e.target.value
+                  setPost(postObj)
+                }}></input><br/>
+                <label for="addPostLocation">Location</label>
+            <input id="addPostLocation" onChange={(e) => {
+                  let postObj = {...post}
+                  postObj.Location = e.target.value
                   setPost(postObj)
                 }}></input><br/>
             <label for="addPostImgUrl">Image Url</label>
@@ -80,6 +87,6 @@ return (
          </div>
       </div>
     </div>
-  </>
+  </Card>
 )
 }
