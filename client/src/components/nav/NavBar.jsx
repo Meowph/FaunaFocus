@@ -48,7 +48,7 @@ export const NavBar = ({ isLoggedIn, setIsLoggedIn, currentUser }) => {
                   <NavLink tag={RRNavLink} to="/experiences" onClick={handleLinkClick}>
                     Experiences
                   </NavLink>
-                  <NavLink style={{paddingLeft:"10px"}} tag={RRNavLink} to="/map" onClick={handleLinkClick}>
+                  <NavLink style={{paddingLeft:"10px", color:'white'}} tag={RRNavLink} to="/map" onClick={handleLinkClick}>
                     World Map
                   </NavLink>
                 </NavItem>
