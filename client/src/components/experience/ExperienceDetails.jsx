@@ -44,7 +44,7 @@ export const ExperienceDetails = ({ isAdmin }) => {
 
   return (
     <>
-      <Card className="m-4">
+      <Card className="m-4" style={{ width: '500px', border:'double, #6cd871' }}>
         <p className="text-left px2">{experienceDetails.title}</p>
         <p className="text-left px2">Published On: {experienceDate}</p>
         <p className="text-left px2">
@@ -54,7 +54,7 @@ export const ExperienceDetails = ({ isAdmin }) => {
         <p className="text-left px2">Description: {experienceDetails.description}</p>
         {(currentUser.id === experienceDetails.userProfileId) && (
             <Button
-              color="warning"
+            style={{backgroundColor:'#FFB6C1', marginBottom:'5px', border:'none', marginLeft:'3px', marginRight:'3px'}}
               onClick={() =>
                 navigate(`/experiences/edit/${id}`, { state: { experience: experienceDetails } })
               }
@@ -66,7 +66,7 @@ export const ExperienceDetails = ({ isAdmin }) => {
         {((currentUser.id === experienceDetails.userProfileId) || (currentUser.userTypeId === 1)) && (
           <>
             <Button
-              color="danger"
+               style={{backgroundColor:'#778899', marginBottom:'5px', border:'none', marginLeft:'3px', marginRight:'3px'}}
               onClick={() =>
                 navigate(`/experiences/delete/${id}`, {
                   state: { experience: experienceDetails },
@@ -77,8 +77,8 @@ export const ExperienceDetails = ({ isAdmin }) => {
             </Button>
             </>
             )}
-        <Link to={"/myexperiences"}>My Experiences</Link>
-        {/* <Link to={"/experiences"}>All Experiences</Link> */}
+        <Link style={{color:'#2E8B57', marginBottom:'5px'}} to={"/myexperiences"}>My Experiences</Link>
+        <Link style={{color:'#2E8B57'}} to={"/experiences"}>All Experiences</Link>
 
         {/* Show the "Unapprove" button if the experience is approved */}
          {/* {isAdmin && experienceDetails.isApproved ? 

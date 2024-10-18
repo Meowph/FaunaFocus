@@ -9,7 +9,7 @@ import { Card } from 'reactstrap';
 
 export const Experience = ({ experience }) => {
   return (
-    <Card className="m-4">
+    <Card style={{ width: '500px', border:'double, #708090' }} className="m-4">
       {experience?.id && (
         <Link to={`/experiences/${experience.id}`}>
           <p className="text-left px-2">{experience.title}</p>

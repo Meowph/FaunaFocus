@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react"
-import { useNavigate } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import { addExperience } from "../../services/ExperienceService.jsx"
 import { getAllCategories } from "../../services/CategoryService.jsx"
+import { Card } from "reactstrap"
 
 export const CreateExperience = () => {
     const [experienceCategories, setExperienceCategories] = useState([])
@@ -35,23 +36,23 @@ export const CreateExperience = () => {
     }
 
     return (
-        <>
+        <Card style={{marginLeft:'50rem'}} >
             <div className="container">
                 <div className="row justify-content-center">
                     <div className="cards-column">
                         <label for="addExperienceTitle">Title</label>
-                        <input id="addExperienceTitle" onChange={(e) => {
+                        <input style={{marginBottom:'10px', marginTop: '5px'}} id="addExperienceTitle" onChange={(e) => {
                                                                 let experienceObj = {...experience}
                                                                 experienceObj.Title = e.target.value
                                                                 setExperience(experienceObj)
                         }}></input><br />
                         <label for="addExperienceDescription">Description</label>
-                        <input id="addExperienceDescription" onChange={(e) => {
+                        <input style={{marginBottom:'10px'}}id="addExperienceDescription" onChange={(e) => {
                                                                     let experienceObj = {...experience}
                                                                     experienceObj.description = e.target.value
                                                                     setExperience(experienceObj)
                         }}></input><br/>
-                        <select name="categories" id="createExperienceCategories" onChange={(e) => {
+                        <select style={{marginBottom:'10px'}} name="categories" id="createExperienceCategories" onChange={(e) => {
                                     let copy = {...experience}
                                     copy.categoryId = e.target.value
                                     setExperience(copy)
@@ -62,10 +63,12 @@ export const CreateExperience = () => {
                             })}
                         </select><br />
 
-                        <button id="submitNewExperience" type="submit" onClick={() => createExperienceObj()}>Add Experience!</button>
+                        <button style={{backgroundColor:'#2E8B57', border:'none', borderRadius:'5px', marginTop:'5px', marginBottom:'10px'}} id="submitNewExperience" type="submit" onClick={() => createExperienceObj()}>Add Experience!</button>
+                        <br></br>
+                        <Link style={{color:'#2E8B57', marginBottom:'5px'}} to={"/experiences"}>Go back To Experience List</Link>
                     </div>
                 </div>
             </div>
-        </>
+            </Card>
     )
 }

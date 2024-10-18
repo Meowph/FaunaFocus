@@ -1,9 +1,8 @@
 import { useEffect, useState } from "react"
-import { useNavigate } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import { addPost } from "../../services/PostService.jsx"
 import { getAllCategories } from "../../services/CategoryService.jsx"
 import { Card } from "reactstrap"
-
 export const CreatePost = () => {
     const [postCategories, setPostCategories] = useState([])
     const [post, setPost] = useState({})
@@ -33,29 +32,29 @@ export const CreatePost = () => {
     }
 
 return (
-  <Card>
-    <div className="container">
+  <Card style={{marginLeft:'50rem'}}>
+    <div style={{margin:'1rem'}} className="container">
       <div className="row justify-content-center">
         <div className="cards-column">
-          <label for="addPostTitle">Title</label>
+          <label style={{marginBottom:'10px'}} for="addPostTitle">Title</label>
             <input id="addPostTitle" onChange={(e) => {
                 let postObj = {...post}
                 postObj.Title = e.target.value
                 setPost(postObj)
               }}></input><br />
-            <label for="addPostDescription">Description</label>
+            <label style={{marginBottom:'10px'}} for="addPostDescription">Description</label>
             <input id="addPostDescription" onChange={(e) => {
                   let postObj = {...post}
                   postObj.Description = e.target.value
                   setPost(postObj)
                 }}></input><br/>
-                <label for="addPostLocation">Location</label>
+                <label style={{marginBottom:'10px'}} for="addPostLocation">Location</label>
             <input id="addPostLocation" onChange={(e) => {
                   let postObj = {...post}
                   postObj.Location = e.target.value
                   setPost(postObj)
                 }}></input><br/>
-            <label for="addPostImgUrl">Image Url</label>
+            <label  style={{marginBottom:'10px'}} for="addPostImgUrl">Image Url</label>
             <input id="addPostImgUrl" 
                   type="text"
                    placeholder="Enter Image URL"
@@ -72,6 +71,7 @@ return (
                   }}></input><br/>
             <select name="categories" 
                     id="createPostCategories" 
+                    style={{marginBottom:'10px'}}
                     onChange= {(e) => {
                           let copy = {...post}
                           copy.categoryId = e.target.value
@@ -83,7 +83,9 @@ return (
                   })}
               </select><br />
 
-              <button id="submitNewPost" type="submit" onClick={() => createPostObj()}>Add Post!</button>
+              <button style={{backgroundColor:'#2E8B57', border:'none', borderRadius:'5px', marginTop:'5px', marginBottom:'10px'}}id="submitNewPost" type="submit" onClick={() => createPostObj()}>Add Post!</button>
+              <br></br>
+              <Link style={{color:'#2E8B57', marginBottom:'5px'}} to={"/post"}>Go back To Post List</Link>
          </div>
       </div>
     </div>

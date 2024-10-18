@@ -10,7 +10,7 @@ import { Card } from 'reactstrap';
 export const Post = ({ post }) => {
   return (
 
-    <Card className="m-4">
+    <Card style={{ width: '500px', border:'double, #708090' }} className="m-4">
       {post?.id && (
         <Link to={`/post/${post.id}`}>
           <p className="text-left px-2">{post.title}</p>

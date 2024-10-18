@@ -54,9 +54,9 @@ export const ExperienceList = () => {
             </select>
 
             {/* View All Experiences */}
-            <Button style={{marginRight:"5px"}} onClick={getAllExperiences}>View All Experiences</Button>
+            <Button style={{marginRight:"5px", backgroundColor:'#778899', border:'none'}} onClick={getAllExperiences}>View All Experiences</Button>
             <Link to="/newexperience">
-                <Button className="create-experience-button">Create Experience</Button>
+                <Button  style={{backgroundColor:'#FFB6C1', border: 'none', padding:'7px'}} className="create-experience-button">Create Experience</Button>
             </Link>
 
             <div className="container">

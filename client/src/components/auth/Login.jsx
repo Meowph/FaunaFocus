@@ -18,7 +18,7 @@ export const Login = ({setIsLoggedIn}) => {
       .then(r =>{
       if(r){
       setIsLoggedIn(true)
-      navigate('/')
+      navigate('/home')
       }
       else{
         alert("Invalid email")
@@ -27,7 +27,7 @@ export const Login = ({setIsLoggedIn}) => {
   };
 
   return (
-    <Form onSubmit={loginSubmit}>
+    <Form style={{ width: '300px', border:'double, #6cd871', padding:'10px' }} onSubmit={loginSubmit}>
       <fieldset>
         <FormGroup>
           <Label for="email">Email</Label>

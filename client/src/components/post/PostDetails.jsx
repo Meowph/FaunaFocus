@@ -45,9 +45,10 @@ export const PostDetails = () => {
 
   return (
     <>
-      <Card className="m-4">
+      <Card className="m-4" style={{ width: '500px', border:'double, #6cd871' }} >
         <p className="text-left px2">{postDetails.title}</p>
         <img
+          style={{ maxWidth: '400px', maxHeight: '300px', marginBottom:'1rem' }} 
           src={`${postDetails.imgUrl}`}
           alt={`Image for ${postDetails.title}`}
         />
@@ -73,6 +74,7 @@ export const PostDetails = () => {
         <p className="text-left px2">Description: {postDetails.description}</p>
         {(currentUser.id === postDetails.userProfileId) && (
             <Button
+              style={{backgroundColor:'#FFB6C1', marginBottom:'5px', border:'none', marginLeft:'3px', marginRight:'3px'}}
               color="warning"
               onClick={() =>
                 navigate(`/posts/edit/${id}`, { state: { post: postDetails } })
@@ -85,7 +87,7 @@ export const PostDetails = () => {
         {((currentUser.id === postDetails.userProfileId) || (currentUser.userTypeId === 1)) && (
           <>
             <Button
-              color="danger"
+              style={{backgroundColor:'#778899', marginBottom:'5px', border:'none', marginLeft:'3px', marginRight:'3px'}}
               onClick={() =>
                 navigate(`/posts/delete/${id}`, {
                   state: { post: postDetails },
@@ -96,8 +98,8 @@ export const PostDetails = () => {
             </Button>
             </>
             )}
-        <Link to={"/myposts"}>My Posts</Link>
-        {/* <Link to={"/posts"}>All Posts</Link> */}
+        <Link style={{color:'#2E8B57', marginBottom:'5px'}} to={"/myposts"}>My Posts</Link>
+        <Link style={{color:'#2E8B57'}} to={"/post"}>All Posts</Link>
 
         {/* Show the "Unapprove" button if the post is approved */}
          {/* {isAdmin && postDetails.isApproved ? 

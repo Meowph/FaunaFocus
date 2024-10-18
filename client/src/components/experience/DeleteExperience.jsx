@@ -8,15 +8,15 @@ export const DeleteExperience = () => {
     const navigate = useNavigate()
 
     const confirmDeleteExperience = (id) => {
-        deleteExperience(id).then(navigate("/myexperiences"))
+        deleteExperience(id).then(navigate("/experiences"))
     } 
 
     return (
         <>
-        <Card className="container">
+        <Card style={{marginLeft:'25rem', width:'25rem'}} className="container">
             <p className="text-left px2">Are you sure you want to delete {state.experience.title}?</p>
-            <Button color="danger" onClick={() => confirmDeleteExperience(state.experience.id)}>Confirm Delete</Button>
-            <Link to={`/experience/${state.experience.id}`}>No! Return To Experience Details</Link>
+            <Button style={{marginBottom:'10px'}}color="danger" onClick={() => confirmDeleteExperience(state.experience.id)}>Confirm Delete</Button>
+            <Link style={{color:'#2E8B57'}} to={`/experiences/${state.experience.id}`}>No! Return To Experience Details</Link>
         </Card>
         </>
     )

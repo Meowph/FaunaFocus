@@ -46,7 +46,7 @@ export const PostList = () => {
     return (
         <>
         {/* Filter by Category */}
-            <select style={{marginRight:"5px"}} name="categories" onChange={(e) => setCategorySelection(e.target.value)}>
+            <select style={{marginRight:"5px", marginTop:'1rem'}} name="categories" onChange={(e) => setCategorySelection(e.target.value)}>
                 <option selected>Filter By Category</option>
                 {categories.map(category => {
                     return <option value={category.id}>{category.name}</option>
@@ -62,10 +62,10 @@ export const PostList = () => {
             </select>
             
             {/* View All Posts */}
-            <Button style={{marginRight:"5px"}} onClick={() => getAllPosts()}>View All Posts</Button>
+            <Button style={{marginRight:"5px", backgroundColor:'#778899', border:'none'}} onClick={() => getAllPosts()}>View All Posts</Button>
             
             <Link to="/newpost">
-  <Button className="create-post-button">Create Post</Button>
+  <Button  style={{backgroundColor:'#FFB6C1', border: 'none', padding:'7px'}} className="create-post-button">Create Post</Button>
 </Link>
             <div className="container">
                 <div className="row justify-content-center">

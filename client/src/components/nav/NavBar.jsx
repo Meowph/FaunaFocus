@@ -31,7 +31,7 @@ export const NavBar = ({ isLoggedIn, setIsLoggedIn, currentUser }) => {
         <img
             src={logo} // Replace with your image URL or path
             alt="Logo"
-            style={{ width: '35px', height: '35px', marginRight: '10px', borderRadius: '30px'}} // Adjust size and margin as needed
+            style={{ width: '35px', height: '35px', marginRight: '10px', marginBottom: '10px', borderRadius: '30px'}} // Adjust size and margin as needed
           />
           Fauna Focus
         </NavbarBrand>

@@ -33,7 +33,7 @@ export const Register = ({ setIsLoggedIn }) => {
   };
 
   return (
-    <Container>
+    <Container style={{ width: '500px', border:'double, #6cd871' }}>
       <Form onSubmit={registerClick}>
         <fieldset>
           <FormGroup>
@@ -68,7 +68,7 @@ export const Register = ({ setIsLoggedIn }) => {
               onChange={(e) => setEmail(e.target.value)}
             />
           </FormGroup>
-          <FormGroup>
+          {/* <FormGroup>
           <Label htmlFor="imgUrl">Profile Image</Label>
           <Input
             id="imgUrl"
@@ -78,7 +78,7 @@ export const Register = ({ setIsLoggedIn }) => {
               setImgUrl(URL.createObjectURL(e.target.files[0]))
             }}
           />
-        </FormGroup>
+        </FormGroup> */}
           {/* <FormGroup>
             <Label for="password">Password</Label>
             <Input

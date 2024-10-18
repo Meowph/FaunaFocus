@@ -47,7 +47,7 @@ export const EditPost = () => {
 
   return (
       <>
-      <div className="container">
+      <div style={{marginLeft:'50rem'}} className="container">
           <div className="row justify-content-center">
               <div className="cards-column">
                 <label for="addPostTitle">Edit Title</label>
