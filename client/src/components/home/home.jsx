@@ -42,7 +42,7 @@ export const Home = () => {
                 <p style={{textDecoration:'green wavy underline'}}>How about lions being professional cat nappers?</p>
                 <p>Just like house-cats, lions spend a good deal of their day napping. Unlike house-cats, a lion can spend up to 20 hours a day napping! Jealous?</p>
                 <br></br>
-                <p>Want to know more? Visit: <a href="https://www.worldwildlife.org/stories/relatable-facts-about-endangered-species" target="_blank"><p>World Wildlife Fund </p></a></p>
+                <p>Want to know more? Visit: <a href="https://www.worldwildlife.org/stories/relatable-facts-about-endangered-species" target="_blank"><p style={{marginTop:'10px'}}>World Wildlife Fund </p></a></p>
                
               </div>
             </div>

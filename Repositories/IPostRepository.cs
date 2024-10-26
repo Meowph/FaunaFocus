@@ -15,5 +15,6 @@ namespace Fauna_Focus.Repositories
         void IsApproved(int postId);
         List<Post> GetPostsBySubscriberId(int id);
         List<Post> GetAllApprovedPostsByCategoryId(int id);
+        List<Post> GetAllApprovedPostsByLocation(string id);
     }
 }

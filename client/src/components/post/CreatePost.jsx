@@ -85,7 +85,7 @@ return (
 
               <button style={{backgroundColor:'#2E8B57', border:'none', borderRadius:'5px', marginTop:'5px', marginBottom:'10px'}}id="submitNewPost" type="submit" onClick={() => createPostObj()}>Add Post!</button>
               <br></br>
-              <Link style={{color:'#2E8B57', marginBottom:'5px'}} to={"/post"}>Go back To Post List</Link>
+              <Link style={{color:'#2E8B57', marginBottom:'5px'}} to={"/post"}>Go Back To Post List</Link>
          </div>
       </div>
     </div>

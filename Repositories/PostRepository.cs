@@ -297,6 +297,7 @@ namespace Fauna_Focus.Repositories
                                         WHERE p.isApproved = 1 AND p.PublishDateTime <= CURRENT_TIMESTAMP AND up.Id = @Id
                                         ORDER BY p.PublishDateTime DESC";
 
+
                     DbUtils.AddParameter(cmd, "@Id", id);
 
                     List<Post> posts = new List<Post>();
@@ -396,6 +397,57 @@ namespace Fauna_Focus.Repositories
                             UserProfile = new UserProfile()
                             {
                                 Id = DbUtils.GetInt(reader, "UserProfileId"),
+                                DisplayName = DbUtils.GetString(reader, "DisplayName")
+                            }
+                        });
+                    }
+
+                    reader.Close();
+
+                    return posts;
+                }
+            }
+        }
+
+        public List<Post> GetAllApprovedPostsByLocation(string id)
+        {
+            using (var conn = Connection)
+            {
+                conn.Open();
+                using (var cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = @"SELECT p.Id, p.Title, p.PublishDateTime, p.isApproved, p.CategoryId, p.UserProfileId, p.ImgUrl, p.Location,
+                                        c.Name, up.DisplayName
+                                        FROM Post p
+                                        LEFT JOIN Category c On c.Id = p.CategoryId
+                                        LEFT JOIN UserProfile up ON up.Id = p.UserProfileId
+                                        WHERE p.isApproved = 1 AND p.PublishDateTime <= CURRENT_TIMESTAMP AND up.Id = @Id
+                                        ORDER BY p.PublishDateTime DESC";
+
+                    DbUtils.AddParameter(cmd, "@Id", id);
+
+                    List<Post> posts = new List<Post>();
+
+                    var reader = cmd.ExecuteReader();
+
+                    while (reader.Read())
+                    {
+                        posts.Add(new Post()
+                        {
+                            Id = DbUtils.GetInt(reader, "Id"),
+                            Title = DbUtils.GetString(reader, "Title"),
+                            PublishDateTime = DbUtils.GetDateTime(reader, "PublishDateTime"),
+                            isApproved = reader.GetBoolean(reader.GetOrdinal("isApproved")),
+                            CategoryId = DbUtils.GetInt(reader, "CategoryId"),
+                            UserProfileId = DbUtils.GetInt(reader, "UserProfileId"),
+                            ImgUrl = DbUtils.GetString(reader, "ImgUrl"),
+                            Location = DbUtils.GetString(reader, "Location"),
+                            Category = new Category()
+                            {
+                                Name = DbUtils.GetString(reader, "Name")
+                            },
+                            UserProfile = new UserProfile()
+                            {
                                 DisplayName = DbUtils.GetString(reader, "DisplayName")
                             }
                         });

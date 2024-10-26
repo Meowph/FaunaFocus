@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useState } from "react"
-import { getAllApprovedPosts, getAllApprovedPostsByCategoryId, getAllApprovedPostsByUserId } from "../../services/PostService.jsx";
+import { getAllApprovedPosts, getAllApprovedPostsByCategoryId, getAllApprovedPostsByLocationId, getAllApprovedPostsByUserId } from "../../services/PostService.jsx";
 import { getAllUsers } from "../../services/UserProfileService.jsx";
 import { Post } from "./Post.jsx";
 import { Button } from "reactstrap";
@@ -13,6 +13,8 @@ export const PostList = () => {
     const [categorySelection, setCategorySelection] = useState([])
     const [users, setUsers] = useState([])
     const [userSelection, setUserSelection] = useState([])
+    const [locations, setLocations] = useState([])
+    const [locationSelection, setLocationSelection] = useState([])
 
     const getAllPosts = () => {
         getAllApprovedPosts().then(postArr => setPosts(postArr));
@@ -33,6 +35,10 @@ export const PostList = () => {
     }, [])
 
     useEffect(() => {
+        getAllUsers().then(userArr =>  setUsers(userArr))
+    }, [])
+
+    useEffect(() => {
         getAllApprovedPostsByCategoryId(categorySelection).then(postArr => setPosts(postArr))
     }, [categorySelection])
 
@@ -41,6 +47,11 @@ export const PostList = () => {
             console.log("Fetched users:", postArr)
             setPosts(postArr)})
     }, [userSelection])
+
+    useEffect(() => {
+        getAllApprovedPostsByLocationId(locationSelection).then(postArr => setPosts(postArr))
+    }, [locationSelection])
+
     
 
     return (
@@ -58,6 +69,14 @@ export const PostList = () => {
                 <option selected >Filter By User</option>
                 {users.map(user => {
                     return <option value={user.id}>{user.displayName}</option>
+                })}
+            </select>
+
+             {/* Filter by Location */}
+             <select style={{marginRight:"5px", marginTop:'1rem'}} name="location" onChange={(e) => setLocationSelection(e.target.value)}>
+            <option selected>Filter By Location</option>
+                {locations.map(location => {
+                    return <option value={location.string}>{location.name}</option>
                 })}
             </select>
             

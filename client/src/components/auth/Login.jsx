@@ -27,8 +27,11 @@ export const Login = ({setIsLoggedIn}) => {
   };
 
   return (
-    <Form style={{ width: '300px', border:'double, #6cd871', padding:'10px' }} onSubmit={loginSubmit}>
+    <div className="d-flex justify-content-center align-items-center" style={{ minHeight: '100vh' }}>
+    <Form style={{ width: '300px', border:'double, #6cd871', padding:'10px',  marginLeft:'50rem', marginBottom:'10rem' }} onSubmit={loginSubmit}>
       <fieldset>
+        <h5 style={{marginBottom: '10px', textAlign: 'center', textDecoration:'underline' }}>Welcome to Fauna Focus!</h5>
+        <p style={{ textAlign: 'center'}}>~ Bringing More Awareness To The Wilderness Around Us ~</p>
         <FormGroup>
           <Label for="email">Email</Label>
           <Input id="email" type="text" onChange={e => setEmail(e.target.value)} />
@@ -41,9 +44,10 @@ export const Login = ({setIsLoggedIn}) => {
           <Button>Login</Button>
         </FormGroup>
         <em>
-          Not registered? <Link to="/register">Register</Link>
+          Not registered? <Link style={{color:'#2E8B57'}} to="/register">Register</Link>
         </em>
       </fieldset>
     </Form>
-  );
+    </div>
+  )
 }

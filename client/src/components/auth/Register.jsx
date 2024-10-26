@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Button, Form, FormGroup, Label, Input, Container } from "reactstrap";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { register } from "../../services/UserProfileService.jsx";
 
 export const Register = ({ setIsLoggedIn }) => {
@@ -33,7 +33,7 @@ export const Register = ({ setIsLoggedIn }) => {
   };
 
   return (
-    <Container style={{ width: '500px', border:'double, #6cd871' }}>
+    <Container style={{ width: '500px', border:'double, #6cd871', backgroundColor:'white', marginLeft:'45rem', marginBottom:'5rem' }}>
       <Form onSubmit={registerClick}>
         <fieldset>
           <FormGroup>
@@ -88,10 +88,13 @@ export const Register = ({ setIsLoggedIn }) => {
             />
           </FormGroup> */}
           <FormGroup>
+            <Link to={"/home"}>
             <Button>Register</Button>
+            </Link>
           </FormGroup>
         </fieldset>
       </Form>
+      <Link style={{color:'#2E8B57'}} to={"/login"}>Go Back To Log In</Link>
     </Container>
   );
 }

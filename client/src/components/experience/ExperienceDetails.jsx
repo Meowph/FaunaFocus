@@ -43,9 +43,10 @@ export const ExperienceDetails = ({ isAdmin }) => {
   }
 
   return (
-    <>
-      <Card className="m-4" style={{ width: '500px', border:'double, #6cd871' }}>
-        <p className="text-left px2">{experienceDetails.title}</p>
+    < div style={{marginLeft:'43rem', marginBottom:'5rem'
+    }}>
+      <Card className="m-4" style={{ width: '500px', border:'double, #6cd871', padding:'0.5rem' }}>
+        <p style={{textDecoration:'underline'}} className="text-left px2">{experienceDetails.title}</p>
         <p className="text-left px2">Published On: {experienceDate}</p>
         <p className="text-left px2">
           Experienced By: {experienceDetails.userProfile.displayName}
@@ -87,6 +88,6 @@ export const ExperienceDetails = ({ isAdmin }) => {
   </Button> : " "
 } */}
       </Card>
-    </>
+    </div>
   );
 };

@@ -99,6 +99,17 @@ namespace Fauna_Focus.Controllers
             return Ok(posts);
         }
 
+        [HttpGet("GetAllApprovedPostsByLocation/{id}")]
+        public IActionResult GetAllApprovedPostsByLocation(string id)
+        {
+            var posts = _postRepository.GetAllApprovedPostsByLocation(id);
+            if (posts == null)
+            {
+                return NotFound();
+            }
+            return Ok(posts);
+        }
+
         // PUT api/<PostController>/5
         [HttpPatch("{id}")]
         public IActionResult Patch(int id)

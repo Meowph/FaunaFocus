@@ -1,5 +1,5 @@
 .navbar {
-  background-color: #6cd871; /* Earthy green */
+  background-color: rgba(108, 216, 113, 0.9);  /* Earthy green */
   padding: 0;
   width: 100%;
   position: fixed; /* Fix the navbar at the top */

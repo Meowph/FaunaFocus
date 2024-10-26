@@ -44,11 +44,11 @@ export const PostDetails = () => {
 
 
   return (
-    <>
-      <Card className="m-4" style={{ width: '500px', border:'double, #6cd871' }} >
-        <p className="text-left px2">{postDetails.title}</p>
+    <div style={{marginLeft:'45rem'}}>
+      <Card className="m-4" style={{ width: '500px', border:'double, #6cd871', padding:'0.5rem' }} >
+        <p style={{textDecoration:'underline'}} className="text-left px2">{postDetails.title}</p>
         <img
-          style={{ maxWidth: '400px', maxHeight: '300px', marginBottom:'1rem' }} 
+          style={{ maxWidth: '400px', maxHeight: '300px', marginBottom:'1rem', marginLeft:'2.5rem' }} 
           src={`${postDetails.imgUrl}`}
           alt={`Image for ${postDetails.title}`}
         />
@@ -108,6 +108,6 @@ export const PostDetails = () => {
   </Button> : " "
 } */}
       </Card>
-    </>
+      </div>
   );
 };
