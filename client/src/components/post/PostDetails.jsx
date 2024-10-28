@@ -71,7 +71,6 @@ export const PostDetails = () => {
           <p className="text-left px-2">Subscribe?</p>
         </Link>
         </Button> */}
-        <p className="text-left px2">Description: {postDetails.description}</p>
         {(currentUser.id === postDetails.userProfileId) && (
             <Button
               style={{backgroundColor:'#FFB6C1', marginBottom:'5px', border:'none', marginLeft:'3px', marginRight:'3px'}}

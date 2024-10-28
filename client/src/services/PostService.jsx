@@ -46,10 +46,6 @@ export const getAllApprovedPostsByUserId = (userId) => {
     return fetch(`${apiUrl}/getallapprovedpostsbyuserid/${userId}`).then(res => res.json())
 }
 
-export const getAllApprovedPostsByLocationId = (locationId) => {
-    return fetch(`${apiUrl}/getallapprovedpostsbylocationid/${locationId}`).then(res => res.json())
-}
-
 
 export const getAllPostsBySubscriberId = (userId) => {
     return fetch(`${apiUrl}/Post/GetPostsBySubscriberId/${userId}`).then(res => res.json())

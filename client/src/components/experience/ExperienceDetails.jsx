@@ -60,7 +60,7 @@ export const ExperienceDetails = ({ isAdmin }) => {
                 navigate(`/experiences/edit/${id}`, { state: { experience: experienceDetails } })
               }
             >
-              Edit Experience
+              Edit Story
             </Button>
             )}
 
@@ -74,12 +74,12 @@ export const ExperienceDetails = ({ isAdmin }) => {
                 })
               }
             >
-              Delete Experience
+              Delete Story
             </Button>
             </>
             )}
-        <Link style={{color:'#2E8B57', marginBottom:'5px'}} to={"/myexperiences"}>My Experiences</Link>
-        <Link style={{color:'#2E8B57'}} to={"/experiences"}>All Experiences</Link>
+        <Link style={{color:'#2E8B57', marginBottom:'5px'}} to={"/myexperiences"}>My Stories</Link>
+        <Link style={{color:'#2E8B57'}} to={"/experiences"}>All Stories</Link>
 
         {/* Show the "Unapprove" button if the experience is approved */}
          {/* {isAdmin && experienceDetails.isApproved ? 

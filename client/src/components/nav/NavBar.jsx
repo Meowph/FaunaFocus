@@ -42,15 +42,15 @@ export const NavBar = ({ isLoggedIn, setIsLoggedIn, currentUser }) => {
             {isLoggedIn && (
               <>
                 <NavItem>
-                  <NavLink style={{paddingLeft:"25px"}} tag={RRNavLink} to="/post" onClick={handleLinkClick}>
+                  <NavLink style={{paddingLeft:"4rem"}} tag={RRNavLink} to="/post" onClick={handleLinkClick}>
                     Posts
                   </NavLink>
                   <NavLink tag={RRNavLink} to="/experiences" onClick={handleLinkClick}>
-                    Experiences
+                    Stories & Experiences
                   </NavLink>
-                  <NavLink style={{paddingLeft:"10px", color:'white'}} tag={RRNavLink} to="/map" onClick={handleLinkClick}>
+                  {/* <NavLink style={{paddingLeft:"10px", color:'white'}} tag={RRNavLink} to="/map" onClick={handleLinkClick}>
                     World Map
-                  </NavLink>
+                  </NavLink> */}
                 </NavItem>
                 <NavItem>
                   <a

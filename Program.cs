@@ -18,6 +18,8 @@ namespace Fauna_Focus
             builder.Services.AddTransient<IExperienceRepository, ExperienceRepository>();
             builder.Services.AddTransient<ICategoryRepository, CategoryRepository>();
             builder.Services.AddTransient<ISubscriptionRepository, SubscriptionRepository>();
+            builder.Services.AddTransient<IPlacesRepository, PlacesRepository>();
+            //builder.Services.AddTransient<ICountryRegionsRepository, CountryRegionsRepository>();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
