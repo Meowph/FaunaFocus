@@ -18,13 +18,13 @@ export const PostList = () => {
 
     const getAllPosts = () => {
         getAllApprovedPosts().then(postArr => setPosts(postArr));
-    }
+    };
 
     useEffect(() => {
         getAllPosts();
         getAllCategories().then(categoryArr => setCategories(categoryArr));
         getAllUsers().then(userArr => setUsers(userArr));
-        getAllPlaces().then(userArr => setPlaces(userArr));
+        getAllPlaces().then(placeArr => setPlaces(placeArr)); // Correct variable name to placeArr
         setCategorySelection("");
         setUserSelection("");
         setPlacesSelection("");
@@ -54,6 +54,9 @@ export const PostList = () => {
         }
     }, [placesSelection]);
 
+    // Sort places alphabetically by country
+    const sortedPlaces = [...places].sort((a, b) => a.country.localeCompare(b.country));
+
     return (
         <>
             <div style={{ marginLeft: '5px', position: 'fixed', top: '4rem', left: '0', right: '0', padding: '10px' }}>
@@ -73,14 +76,13 @@ export const PostList = () => {
                     ))}
                 </select>
 
-                {/* Filter by Location */}
-                {/* value={places.id} is what allows the URL to be read as /getallapprovedpostsbyplacesId/id... anything other then id after places would give back a 400 error */}
+                {/* Filter by Location
                 <select style={{ marginRight: "5px", marginTop: '1rem' }} name="places" onChange={(e) => setPlacesSelection(e.target.value)}>
                     <option value="">Filter By Location</option>
-                    {places.map(places => (
-                        <option value={places.id} key={places.id}>{places.name}, {places.country}, {places.region}</option>
+                    {sortedPlaces.map(place => (
+                        <option value={place.id} key={place.id}>{place.name}, {place.region}, {place.country}</option>
                     ))}
-                </select>
+                </select> */}
 
                 {/* View All Posts */}
                 <Button style={{ marginRight: "5px", backgroundColor: '#778899', border: 'none' }} onClick={getAllPosts}>View All Posts</Button>
@@ -106,5 +108,5 @@ export const PostList = () => {
                 </Row>
             </div>
         </>
-    )
-}
+    );
+};

@@ -42,12 +42,12 @@ return (
                 postObj.Title = e.target.value
                 setPost(postObj)
               }}></input><br />
-            <label style={{marginBottom:'10px'}} for="addPostDescription">Description</label>
+            {/* <label style={{marginBottom:'10px'}} for="addPostDescription">Description</label>
             <input id="addPostDescription" onChange={(e) => {
                   let postObj = {...post}
                   postObj.Description = e.target.value
                   setPost(postObj)
-                }}></input><br/>
+                }}></input><br/> */}
                 <label style={{marginBottom:'10px'}} for="addPostLocation">Location</label>
             <input id="addPostLocation" onChange={(e) => {
                   let postObj = {...post}

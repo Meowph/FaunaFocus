@@ -20,7 +20,7 @@ export const UserExperienceList = () => {
 
     return (
         <>
-            <div className="container" style={{marginLeft:'40rem'}}>
+            <div className="container" style={{marginLeft:'50rem'}}>
                 <div className="row justify-content-center">
                     <div className="cards-column">
                         {userExperiences.length ? userExperiences.map((experience) => (

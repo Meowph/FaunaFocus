@@ -57,20 +57,7 @@ export const PostDetails = () => {
         <p className="text-left px2">
           Posted By: {postDetails.userProfile.displayName}
         </p>
-
-        {/* <Button
-              color="danger"
-              onClick={() =>
-                navigate(`/subscription/:id`)}
-            >
-              Subscribe?
-            </Button> */}
-
-        {/* <Button>
-        <Link to={`/subscription/:id`}>
-          <p className="text-left px-2">Subscribe?</p>
-        </Link>
-        </Button> */}
+        
         {(currentUser.id === postDetails.userProfileId) && (
             <Button
               style={{backgroundColor:'#FFB6C1', marginBottom:'5px', border:'none', marginLeft:'3px', marginRight:'3px'}}

@@ -364,10 +364,10 @@ namespace Fauna_Focus.Repositories
                     cmd.CommandText = @"SELECT p.Id, p.Title, p.PublishDateTime, p.isApproved, p.CategoryId, p.UserProfileId, p.ImgUrl, p.Location, p.PlacesId,
                                         pl.Name, pl.Country, pl.Region, up.DisplayName
                                         FROM Post p
-                                        LEFT JOIN Places pl On pl.Id = p.PlacesId
+                                        LEFT JOIN Places pl ON pl.Id = p.PlacesId
                                         LEFT JOIN UserProfile up ON up.Id = p.UserProfileId
                                         WHERE p.isApproved = 1 AND p.PublishDateTime <= CURRENT_TIMESTAMP AND pl.Id = @Id
-                                        ORDER BY pl.Region ASC";
+                                        ORDER BY pl.Country ASC";
 
                     DbUtils.AddParameter(cmd, "@Id", id);
 

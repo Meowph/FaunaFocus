@@ -10,15 +10,9 @@ export const Register = ({ setIsLoggedIn }) => {
   const [lastName, setLastName] = useState();
   const [displayName, setDisplayName] = useState();
   const [email, setEmail] = useState();
-  const [imgUrl, setImgUrl] = useState();
-  // const [password, setPassword] = useState();
-//   const [confirmPassword, setConfirmPassword] = useState();
 
   const registerClick = (e) => {
     e.preventDefault();
-    // if (password && password !== confirmPassword) {
-    //   alert("Passwords don't match. Do better.");
-    // } else {
       const userProfile = {
         firstName,
         lastName,
@@ -26,75 +20,53 @@ export const Register = ({ setIsLoggedIn }) => {
         email,
       };
       register(userProfile).then(() => {
-        setIsLoggedIn(true);
-        navigate("/");
+        navigate("/login");
       });
     // }
   };
 
   return (
-    <Container style={{ width: '500px', border:'double, #6cd871', backgroundColor:'white', marginLeft:'45rem', marginBottom:'5rem' }}>
-      <Form onSubmit={registerClick}>
-        <fieldset>
-          <FormGroup>
-            <Label htmlFor="firstName">First Name</Label>
-            <Input
-              id="firstName"
-              type="text"
-              onChange={(e) => setFirstName(e.target.value)}
-            />
-          </FormGroup>
-          <FormGroup>
-            <Label htmlFor="lastName">Last Name</Label>
-            <Input
-              id="lastName"
-              type="text"
-              onChange={(e) => setLastName(e.target.value)}
-            />
-          </FormGroup>
-          <FormGroup>
-            <Label htmlFor="displayName">Display Name</Label>
-            <Input
-              id="displayName"
-              type="text"
-              onChange={(e) => setDisplayName(e.target.value)}
-            />
-          </FormGroup>
-          <FormGroup>
-            <Label for="email">Email</Label>
-            <Input
-              id="email"
-              type="text"
-              onChange={(e) => setEmail(e.target.value)}
-            />
-          </FormGroup>
-          {/* <FormGroup>
-          <Label htmlFor="imgUrl">Profile Image</Label>
+    <Container style={{ width: '500px', border: 'double #6cd871', backgroundColor: 'white', marginLeft: '45rem', marginBottom: '5rem' }}>
+    <Form onSubmit={registerClick}>
+      <fieldset>
+        <FormGroup>
+          <Label htmlFor="firstName">First Name</Label>
           <Input
-            id="imgUrl"
-            type="file"
-            onChange={(e) => {
-              console.log(e.target.files[0]);
-              setImgUrl(URL.createObjectURL(e.target.files[0]))
-            }}
+            id="firstName"
+            type="text"
+            onChange={(e) => setFirstName(e.target.value)}
           />
-        </FormGroup> */}
-          {/* <FormGroup>
-            <Label for="password">Password</Label>
-            <Input
-              id="password"
-              type="password"
-              onChange={(e) => setPassword(e.target.value)}
-            />
-          </FormGroup> */}
-          <FormGroup>
-            <Link to={"/home"}>
-            <Button>Register</Button>
-            </Link>
+        </FormGroup>
+        <FormGroup>
+          <Label htmlFor="lastName">Last Name</Label>
+          <Input
+            id="lastName"
+            type="text"
+            onChange={(e) => setLastName(e.target.value)}
+          />
+        </FormGroup>
+        <FormGroup>
+          <Label htmlFor="displayName">Display Name</Label>
+          <Input
+            id="displayName"
+            type="text"
+            onChange={(e) => setDisplayName(e.target.value)}
+          />
+        </FormGroup>
+        <FormGroup>
+          <Label for="email">Email</Label>
+          <Input
+            id="email"
+            type="text"
+            onChange={(e) => setEmail(e.target.value)}
+          />
+        </FormGroup>
+        <FormGroup>
+            <Button type="submit">Register</Button>
           </FormGroup>
-        </fieldset>
-      </Form>
-      <Link style={{color:'#2E8B57'}} to={"/login"}>Go Back To Log In</Link>
-    </Container>
+      </fieldset>
+    </Form>
+    <Link style={{ color: '#2E8B57' }} to={"/login"}>Go Back To Log In</Link>
+  </Container>
   );
 }

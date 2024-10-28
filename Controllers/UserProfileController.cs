@@ -32,8 +32,6 @@ namespace Fauna_Focus.Controllers
         public IActionResult Post(UserProfile userProfile)
         {
             userProfile.UserTypeId = UserType.AUTHOR_ID;
-            userProfile.DeactivateVotes = 0;
-            userProfile.DemoteVotes = 0;
             _userRepository.Add(userProfile);
             return CreatedAtAction(
                 "GetByEmail",
