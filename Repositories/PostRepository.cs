@@ -2,6 +2,7 @@
 using Fauna_Focus.Models;
 using FaunaFocus.Repositories;
 using Microsoft.Extensions.Hosting;
+using Humanizer;
 
 namespace Fauna_Focus.Repositories
 {
@@ -243,8 +244,7 @@ namespace Fauna_Focus.Repositories
                                         LEFT JOIN Category c On c.Id = p.CategoryId
                                         LEFT JOIN UserProfile up ON up.Id = p.UserProfileId
                                         WHERE p.isApproved = 1 AND p.PublishDateTime <= CURRENT_TIMESTAMP AND c.Id = @Id
-                                        ORDER BY p.PublishDateTime DESC"
-                    ;
+                                        ORDER BY p.PublishDateTime DESC";
 
                     DbUtils.AddParameter(cmd, "@Id", id);
 
@@ -354,74 +354,19 @@ namespace Fauna_Focus.Repositories
             }
         }
 
-        public List<Post> GetPostsBySubscriberId(int id)
+        public List<Post> GetAllApprovedPostsByPlacesId(int id)
         {
             using (var conn = Connection)
             {
                 conn.Open();
                 using (var cmd = conn.CreateCommand())
                 {
-                    cmd.CommandText = @"SELECT p.Id AS 'PostId', p.Title, p.Description, p.CategoryId, p.ImgUrl, p.PublishDateTime, p.ImgUrl, p.Location,
-                            up.Id AS 'UserProfileId', up.DisplayName, c.Name, s.BeginDateTime, s.EndDateTime
-                            FROM Post p
-                            INNER JOIN UserProfile up
-                            ON p.UserProfileId = up.Id
-                            INNER JOIN Subscription s
-                            ON up.Id = s.ProviderUserProfileId
-                            LEFT JOIN Category c
-                            ON c.Id = p.CategoryId
-                            WHERE s.SubscriberUserProfileId = @Id AND p.isApproved = 1 AND s.EndDateTime IS NULL
-                            ORDER BY p.PublishDateTime DESC";
-
-                    DbUtils.AddParameter(cmd, "@Id", id);
-
-                    List<Post> posts = new List<Post>();
-
-                    var reader = cmd.ExecuteReader();
-
-                    while (reader.Read())
-                    {
-                        posts.Add(new Post()
-                        {
-                            Id = DbUtils.GetInt(reader, "PostId"),
-                            Title = DbUtils.GetString(reader, "Title"),
-                            Description = DbUtils.GetString(reader, "Description"),
-                            ImgUrl = reader.GetString(reader.GetOrdinal("ImgUrl")),
-                            PublishDateTime = DbUtils.GetDateTime(reader, "PublishDateTime"),
-                            CategoryId = DbUtils.GetInt(reader, "CategoryId"),
-                            Category = new Category()
-                            {
-                                Name = DbUtils.GetString(reader, "Name")
-                            },
-                            UserProfileId = DbUtils.GetInt(reader, "UserProfileId"),
-                            UserProfile = new UserProfile()
-                            {
-                                Id = DbUtils.GetInt(reader, "UserProfileId"),
-                                DisplayName = DbUtils.GetString(reader, "DisplayName")
-                            }
-                        });
-                    }
-
-                    reader.Close();
-
-                    return posts;
-                }
-            }
-        }
-
-        public List<Post> GetAllApprovedPostsByLocation(string id)
-        {
-            using (var conn = Connection)
-            {
-                conn.Open();
-                using (var cmd = conn.CreateCommand())
-                {
-                    cmd.CommandText = @"SELECT p.Id, p.Title, p.PublishDateTime, p.isApproved, p.CategoryId, p.UserProfileId, p.ImgUrl, p.Location,
-                                        c.Name, up.DisplayName
+                    cmd.CommandText = @"SELECT p.Id, p.Title, p.PublishDateTime, p.isApproved, p.CategoryId, p.UserProfileId, p.ImgUrl, p.Location, p.PlacesId,
+                                        pl.Name, pl.Country, pl.Region, up.DisplayName
                                         FROM Post p
-                                        LEFT JOIN Category c On c.Id = p.CategoryId
+                                        LEFT JOIN Places pl On pl.Id = p.PlacesId
                                         LEFT JOIN UserProfile up ON up.Id = p.UserProfileId
-                                        WHERE p.isApproved = 1 AND p.PublishDateTime <= CURRENT_TIMESTAMP AND up.Id = @Id
+                                        WHERE p.isApproved = 1 AND p.PublishDateTime <= CURRENT_TIMESTAMP AND pl.Id = @Id
                                         ORDER BY p.PublishDateTime DESC";
 
                     DbUtils.AddParameter(cmd, "@Id", id);

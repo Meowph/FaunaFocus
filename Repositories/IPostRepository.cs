@@ -13,8 +13,7 @@ namespace Fauna_Focus.Repositories
         void Update(Post post);
         List<Post> GetAllApprovedPostsByUserId(int id);
         void IsApproved(int postId);
-        List<Post> GetPostsBySubscriberId(int id);
         List<Post> GetAllApprovedPostsByCategoryId(int id);
-        List<Post> GetAllApprovedPostsByLocation(string id);
+        List<Post> GetAllApprovedPostsByPlacesId(int id);
     }
 }

@@ -55,7 +55,7 @@ export const PostList = () => {
 
     return (
         <>
-            <div style={{ marginLeft: '5px', position: 'fixed', top: '4rem', left: '0', right: '0', zIndex: '1000', padding: '10px' }}>
+            <div style={{ marginLeft: '5px', position: 'fixed', top: '4rem', left: '0', right: '0', padding: '10px' }}>
                 {/* Filter by Category */}
                 <select style={{ marginRight: "5px", marginTop: '1rem' }} name="categories" onChange={(e) => setCategorySelection(e.target.value)}>
                     <option value="">Filter By Category</option>

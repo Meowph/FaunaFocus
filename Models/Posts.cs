@@ -16,5 +16,6 @@ namespace Fauna_Focus.Models
         public Category? Category { get; set; }
         public UserProfile? UserProfile { get; set; }
         public int UserProfileId { get; set; }
+        public int PlacesId { get; set; }
     }
 }

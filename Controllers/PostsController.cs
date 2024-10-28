@@ -99,10 +99,10 @@ namespace Fauna_Focus.Controllers
             return Ok(posts);
         }
 
-        [HttpGet("GetAllApprovedPostsByLocation/{id}")]
-        public IActionResult GetAllApprovedPostsByLocation(string id)
+        [HttpGet("GetAllApprovedPostsByPlacesId/{id}")]
+        public IActionResult GetAllApprovedPostsByPlacesId(int id)
         {
-            var posts = _postRepository.GetAllApprovedPostsByLocation(id);
+            var posts = _postRepository.GetAllApprovedPostsByPlacesId(id);
             if (posts == null)
             {
                 return NotFound();
@@ -121,17 +121,6 @@ namespace Fauna_Focus.Controllers
 
             _postRepository.IsApproved(id);
             return NoContent();
-        }
-
-        [HttpGet("GetPostsBySubscriberId/{id}")]
-        public IActionResult GetPostsBySubscriberId(int id)
-        {
-            var posts = _postRepository.GetPostsBySubscriberId(id);
-            if (posts == null)
-            {
-                return NotFound();
-            }
-            return Ok(posts);
         }
     }
 }
