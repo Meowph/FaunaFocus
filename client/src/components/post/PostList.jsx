@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { getAllApprovedPosts, getAllApprovedPostsByCategoryId, getAllApprovedPostsByLocationId, getAllApprovedPostsByUserId } from "../../services/PostService.jsx";
+import { getAllApprovedPosts, getAllApprovedPostsByCategoryId, getAllApprovedPostsByUserId } from "../../services/PostService.jsx";
 import { getAllUsers } from "../../services/UserProfileService.jsx";
 import { Post } from "./Post.jsx";
 import { Button, Col, Row } from "reactstrap";
@@ -73,12 +73,12 @@ export const PostList = () => {
                 </select>
 
                 {/* Filter by Location */}
-                <select style={{ marginRight: "5px", marginTop: '1rem' }} name="location" onChange={(e) => setLocationSelection(e.target.value)}>
+                {/* <select style={{ marginRight: "5px", marginTop: '1rem' }} name="location" onChange={(e) => setLocationSelection(e.target.value)}>
                     <option value="">Filter By Location</option>
                     {locations.map(location => (
                         <option value={location.string} key={location.id}>{location.name}</option>
                     ))}
-                </select>
+                </select> */}
 
                 {/* View All Posts */}
                 <Button style={{ marginRight: "5px", backgroundColor: '#778899', border: 'none' }} onClick={getAllPosts}>View All Posts</Button>
