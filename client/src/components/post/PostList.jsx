@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
-import { getAllApprovedPosts, getAllApprovedPostsByCategoryId, getAllApprovedPostsByLocationId, getAllApprovedPostsByUserId } from "../../services/PostService.jsx";
+import { getAllApprovedPosts, getAllApprovedPostsByCategoryId, getAllApprovedPostsByPlacesRegion, getAllApprovedPostsByUserId } from "../../services/PostService.jsx";
 import { getAllUsers } from "../../services/UserProfileService.jsx";
 import { Post } from "./Post.jsx";
 import { Button, Col, Row } from "reactstrap";
 import { getAllCategories } from "../../services/CategoryService.jsx";
 import { Link } from 'react-router-dom';
+import { getAllPlaces } from "../../services/PlacesService.jsx";
 
 export const PostList = () => {
     const [posts, setPosts] = useState([]);
@@ -12,8 +13,8 @@ export const PostList = () => {
     const [categorySelection, setCategorySelection] = useState("");
     const [users, setUsers] = useState([]);
     const [userSelection, setUserSelection] = useState("");
-    const [locations, setLocations] = useState([]);
-    const [locationSelection, setLocationSelection] = useState("");
+    const [places, setPlaces] = useState([]);
+    const [placesSelection, setPlacesSelection] = useState("");
 
     const getAllPosts = () => {
         getAllApprovedPosts().then(postArr => setPosts(postArr));
@@ -23,10 +24,10 @@ export const PostList = () => {
         getAllPosts();
         getAllCategories().then(categoryArr => setCategories(categoryArr));
         getAllUsers().then(userArr => setUsers(userArr));
-        // Reset selections
+        getAllPlaces().then(userArr => setPlaces(userArr));
         setCategorySelection("");
         setUserSelection("");
-        setLocationSelection("");
+        setPlacesSelection("");
     }, []); // This ensures it runs once when the component mounts
 
     useEffect(() => {
@@ -46,12 +47,12 @@ export const PostList = () => {
     }, [userSelection]);
 
     useEffect(() => {
-        if (locationSelection) {
-            getAllApprovedPostsByLocationId(locationSelection).then(postArr => setPosts(postArr));
+        if (placesSelection) {
+            getAllApprovedPostsByPlacesRegion(placesSelection).then(postArr => setPosts(postArr));
         } else {
             getAllPosts(); // If no location is selected, show all posts
         }
-    }, [locationSelection]);
+    }, [placesSelection]);
 
     return (
         <>
@@ -73,10 +74,10 @@ export const PostList = () => {
                 </select>
 
                 {/* Filter by Location */}
-                <select style={{ marginRight: "5px", marginTop: '1rem' }} name="location" onChange={(e) => setLocationSelection(e.target.value)}>
+                <select style={{ marginRight: "5px", marginTop: '1rem' }} name="places" onChange={(e) => setPlacesSelection(e.target.value)}>
                     <option value="">Filter By Location</option>
-                    {locations.map(location => (
-                        <option value={location.string} key={location.id}>{location.name}</option>
+                    {places.map(places => (
+                        <option value={places.string} key={places.id}>{places.name}, {places.country}, {places.region}</option>
                     ))}
                 </select>
 

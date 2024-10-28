@@ -99,10 +99,10 @@ namespace Fauna_Focus.Controllers
             return Ok(posts);
         }
 
-        [HttpGet("GetAllApprovedPostsByPlacesId/{id}")]
-        public IActionResult GetAllApprovedPostsByPlacesId(int id)
+        [HttpGet("GetAllApprovedPostsByPlacesId/{placesRegion}")]
+        public IActionResult GetAllApprovedPostsByPlacesId(string placesRegion)
         {
-            var posts = _postRepository.GetAllApprovedPostsByPlacesId(id);
+            var posts = _postRepository.GetAllApprovedPostsByPlacesRegion(placesRegion);
             if (posts == null)
             {
                 return NotFound();
