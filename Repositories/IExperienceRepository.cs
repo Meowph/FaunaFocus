@@ -13,7 +13,5 @@ namespace Fauna_Focus.Repositories
         List<Experiences> GetAllApprovedExperiencesByUserId(int id);
         void isApproved(int experienceId);
         List<Experiences> GetAllApprovedExperiencesByCategoryId(int id);
-
-        List<Experiences> GetExperiencesBySubscriberId(int id);
     }
 }

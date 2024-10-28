@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { getAllApprovedPosts, getAllApprovedPostsByCategoryId, getAllApprovedPostsByPlacesRegion, getAllApprovedPostsByUserId } from "../../services/PostService.jsx";
+import { getAllApprovedPosts, getAllApprovedPostsByCategoryId, getAllApprovedPostsByPlacesId, getAllApprovedPostsByUserId } from "../../services/PostService.jsx";
 import { getAllUsers } from "../../services/UserProfileService.jsx";
 import { Post } from "./Post.jsx";
 import { Button, Col, Row } from "reactstrap";
@@ -48,7 +48,7 @@ export const PostList = () => {
 
     useEffect(() => {
         if (placesSelection) {
-            getAllApprovedPostsByPlacesRegion(placesSelection).then(postArr => setPosts(postArr));
+            getAllApprovedPostsByPlacesId(placesSelection).then(postArr => setPosts(postArr));
         } else {
             getAllPosts(); // If no location is selected, show all posts
         }
@@ -74,10 +74,11 @@ export const PostList = () => {
                 </select>
 
                 {/* Filter by Location */}
+                {/* value={places.id} is what allows the URL to be read as /getallapprovedpostsbyplacesId/id... anything other then id after places would give back a 400 error */}
                 <select style={{ marginRight: "5px", marginTop: '1rem' }} name="places" onChange={(e) => setPlacesSelection(e.target.value)}>
                     <option value="">Filter By Location</option>
                     {places.map(places => (
-                        <option value={places.string} key={places.id}>{places.name}, {places.country}, {places.region}</option>
+                        <option value={places.id} key={places.id}>{places.name}, {places.country}, {places.region}</option>
                     ))}
                 </select>
 

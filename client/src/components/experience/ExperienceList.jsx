@@ -37,7 +37,7 @@ export const ExperienceList = () => {
 
     return (
         <>
-            <div style={{ marginLeft: '5px', position: 'fixed', top: '5rem', left: '0', right: '0',  padding: '10px' }}>
+            <div style={{ marginLeft: '5px', position: 'fixed', top: '5rem', left: '0', right: '0',  padding: '10px', zIndex:'1000' }}>
                 {/* Filter by Category */}
                 <select style={{ marginRight: "5px" }} name="categories" onChange={(e) => setCategorySelection(parseInt(e.target.value))}>
                     <option value="">Filter By Category</option>
@@ -61,7 +61,7 @@ export const ExperienceList = () => {
                 </Link>
             </div>
 
-            <div className="container" style={{ marginTop: '8rem', marginLeft: '18rem' }}> {/* Adjust margin to prevent overlap */}
+            <div className="container" style={{ marginTop: '8rem', marginLeft: '18rem'}}> {/* Adjust margin to prevent overlap */}
                 <Row className="justify-content-center g-2"> {/* Use Row from reactstrap */}
                     {experiences.length > 0 ? (
                         experiences.map((experience) => (

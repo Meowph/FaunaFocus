@@ -46,6 +46,6 @@ export const getAllApprovedPostsByUserId = (userId) => {
     return fetch(`${apiUrl}/getallapprovedpostsbyuserid/${userId}`).then(res => res.json())
 }
 
-export const getAllApprovedPostsByPlacesRegion = (placesRegion) => {
-    return fetch(`${apiUrl}/getallapprovedpostsbyplacesregion/${placesRegion}`).then(res => res.json());
+export const getAllApprovedPostsByPlacesId= (placesId) => {
+    return fetch(`${apiUrl}/getallapprovedpostsbyplacesId/${placesId}`).then(res => res.json());
 }

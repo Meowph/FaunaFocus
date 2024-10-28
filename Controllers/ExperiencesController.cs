@@ -109,17 +109,5 @@ namespace Fauna_Focus.Controllers
             _experienceRepository.isApproved(id);
             return NoContent();
         }
-
-        // GET: api/Experiences/GetExperiencesBySubscriberId/{id}
-        [HttpGet("GetExperiencesBySubscriberId/{id}")]
-        public IActionResult GetExperiencesBySubscriberId(int id)
-        {
-            var experiences = _experienceRepository.GetExperiencesBySubscriberId(id);
-            if (experiences == null)
-            {
-                return NotFound();
-            }
-            return Ok(experiences);
-        }
     }
 }

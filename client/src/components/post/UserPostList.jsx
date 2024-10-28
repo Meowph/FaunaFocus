@@ -20,7 +20,7 @@ export const UserPostList = () => {
 
     return (
         <>
-            <div className="container" style={{marginLeft:'45rem'}}>
+            <div className="container" style={{marginLeft:'50rem'}}>
                 <div className="row justify-content-center">
                     <div className="cards-column">
                         {userPosts.length ? userPosts.map((post) => (

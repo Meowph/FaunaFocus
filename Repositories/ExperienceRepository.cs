@@ -355,58 +355,5 @@ namespace Fauna_Focus.Repositories
                 }
             }
         }
-
-        public List<Experiences> GetExperiencesBySubscriberId(int id)
-        {
-            using (var conn = Connection)
-            {
-                conn.Open();
-                using (var cmd = conn.CreateCommand())
-                {
-                    cmd.CommandText = @"SELECT e.Id AS 'ExperienceId', e.Title, e.Description, e.CategoryId, e.PublishDateTime, up.Id AS 'UserProfileId', up.DisplayName, c.Name, s.BeginDateTime, s.EndDateTime
-                            FROM Experience e
-                            INNER JOIN UserProfile up
-                            ON e.UserProfileId = up.Id
-                            INNER JOIN Subscription s
-                            ON up.Id = s.ProviderUserProfileId
-                            LEFT JOIN Category c
-                            ON c.Id = e.CategoryId
-                            WHERE s.SubscriberUserProfileId = @Id AND e.isApproved = 1 AND s.EndDateTime IS NULL
-                            ORDER BY e.PublishDateTime DESC";
-
-                    DbUtils.AddParameter(cmd, "@Id", id);
-
-                    List<Experiences> experiences = new List<Experiences>();
-
-                    var reader = cmd.ExecuteReader();
-
-                    while (reader.Read())
-                    {
-                        experiences.Add(new Experiences()
-                        {
-                            Id = DbUtils.GetInt(reader, "PostId"),
-                            Title = DbUtils.GetString(reader, "Title"),
-                            Description = DbUtils.GetString(reader, "Description"),
-                            PublishDateTime = DbUtils.GetDateTime(reader, "PublishDateTime"),
-                            CategoryId = DbUtils.GetInt(reader, "CategoryId"),
-                            Category = new Category()
-                            {
-                                Name = DbUtils.GetString(reader, "Name")
-                            },
-                            UserProfileId = DbUtils.GetInt(reader, "UserProfileId"),
-                            UserProfile = new UserProfile()
-                            {
-                                Id = DbUtils.GetInt(reader, "UserProfileId"),
-                                DisplayName = DbUtils.GetString(reader, "DisplayName")
-                            }
-                        });
-                    }
-
-                    reader.Close();
-
-                    return experiences;
-                }
-            }
-        }
     }
 }

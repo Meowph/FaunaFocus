@@ -33,7 +33,7 @@ namespace Fauna_Focus.Repositories
                     {
                         posts.Add(new Post()
                         {
-
+                            
                             Id = DbUtils.GetInt(reader, "Id"),
                             Title = DbUtils.GetString(reader, "Title"),
                             PublishDateTime = DbUtils.GetDateTime(reader, "PublishDateTime"),
@@ -57,7 +57,7 @@ namespace Fauna_Focus.Repositories
 
                     }
 
-
+                    
                     Console.Write("check");
                     reader.Close();
 
@@ -354,7 +354,7 @@ namespace Fauna_Focus.Repositories
             }
         }
 
-        public List<Post> GetAllApprovedPostsByPlacesRegion(string placesRegion)
+        public List<Post> GetAllApprovedPostsByPlacesId(int id)
         {
             using (var conn = Connection)
             {
@@ -362,47 +362,45 @@ namespace Fauna_Focus.Repositories
                 using (var cmd = conn.CreateCommand())
                 {
                     cmd.CommandText = @"SELECT p.Id, p.Title, p.PublishDateTime, p.isApproved, p.CategoryId, p.UserProfileId, p.ImgUrl, p.Location, p.PlacesId,
-                                pl.Name, pl.Country, pl.Region, up.DisplayName
-                                FROM Post p
-                                LEFT JOIN Places pl ON pl.Id = p.PlacesId
-                                LEFT JOIN UserProfile up ON up.Id = p.UserProfileId
-                                WHERE p.isApproved = 1 AND p.PublishDateTime <= CURRENT_TIMESTAMP AND pl.Region = @placesRegion
-                                ORDER BY pl.Region ASC";
+                                        pl.Name, pl.Country, pl.Region, up.DisplayName
+                                        FROM Post p
+                                        LEFT JOIN Places pl On pl.Id = p.PlacesId
+                                        LEFT JOIN UserProfile up ON up.Id = p.UserProfileId
+                                        WHERE p.isApproved = 1 AND p.PublishDateTime <= CURRENT_TIMESTAMP AND pl.Id = @Id
+                                        ORDER BY pl.Region ASC";
 
-                    // Updated parameter to match the region filter
-                    DbUtils.AddParameter(cmd, "@placesRegion", placesRegion);
+                    DbUtils.AddParameter(cmd, "@Id", id);
 
                     List<Post> posts = new List<Post>();
 
-                    using (var reader = cmd.ExecuteReader())
+                    var reader = cmd.ExecuteReader();
+
+                    while (reader.Read())
                     {
-                        while (reader.Read())
+                        posts.Add(new Post()
                         {
-                            posts.Add(new Post()
+                            Id = DbUtils.GetInt(reader, "Id"),
+                            Title = DbUtils.GetString(reader, "Title"),
+                            PublishDateTime = DbUtils.GetDateTime(reader, "PublishDateTime"),
+                            isApproved = reader.GetBoolean(reader.GetOrdinal("isApproved")),
+                            CategoryId = DbUtils.GetInt(reader, "CategoryId"),
+                            UserProfileId = DbUtils.GetInt(reader, "UserProfileId"),
+                            ImgUrl = DbUtils.GetString(reader, "ImgUrl"),
+                            Location = DbUtils.GetString(reader, "Location"),
+                            Category = new Category()
                             {
-                                Id = DbUtils.GetInt(reader, "Id"),
-                                Title = DbUtils.GetString(reader, "Title"),
-                                PublishDateTime = DbUtils.GetDateTime(reader, "PublishDateTime"),
-                                isApproved = reader.GetBoolean(reader.GetOrdinal("isApproved")),
-                                CategoryId = DbUtils.GetInt(reader, "CategoryId"),
-                                UserProfileId = DbUtils.GetInt(reader, "UserProfileId"),
-                                ImgUrl = DbUtils.GetString(reader, "ImgUrl"),
-                                Location = DbUtils.GetString(reader, "Location"),
-                                Category = new Category()
-                                {
-                                    Name = DbUtils.GetString(reader, "Name")
-                                },
-                                UserProfile = new UserProfile()
-                                {
-                                    DisplayName = DbUtils.GetString(reader, "DisplayName")
-                                }
-                            });
-                        }
-
-                        reader.Close();
-
-                        return posts;
+                                Name = DbUtils.GetString(reader, "Name")
+                            },
+                            UserProfile = new UserProfile()
+                            {
+                                DisplayName = DbUtils.GetString(reader, "DisplayName")
+                            }
+                        });
                     }
+
+                    reader.Close();
+
+                    return posts;
                 }
             }
         }

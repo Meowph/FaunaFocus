@@ -1,6 +1,5 @@
 // import 'bootstrap/dist/css/bootstrap.css';
 // import green from "./components/logo/green.webp"
-import { Link } from "react-router-dom";
 import "./Home.css";
 
 export const Home = () => {
@@ -36,10 +35,10 @@ export const Home = () => {
               <div class="carousel-caption d-md-block">
                 <h4 style={{ color: "black", backgroundColor:'white', textDecoration:'underline' }}>Fun Facts</h4>
                 <br></br>
-                <p style={{textDecoration:'green wavy underline'}}>Did you know that Black-footed ferrets are very chatty?</p>
+                <p>Did you know that Black-footed ferrets are very chatty?</p>
                 <p>They communicate with a variety of noises, including chatters, hisses, whimpers and even barking. Even though they are solitary creatures, they will let you know when they're near. </p>
                 <br></br>
-                <p style={{textDecoration:'green wavy underline'}}>How about lions being professional cat nappers?</p>
+                <p>How about lions being professional cat nappers?</p>
                 <p>Just like house-cats, lions spend a good deal of their day napping. Unlike house-cats, a lion can spend up to 20 hours a day napping! Jealous?</p>
                 <br></br>
                 <p>Want to know more? Visit: <a href="https://www.worldwildlife.org/stories/relatable-facts-about-endangered-species" target="_blank"><p style={{marginTop:'10px'}}>World Wildlife Fund </p></a></p>
